@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import Modal from "react-modal";
 
 // -   Main color: #3cb371;
 // -   Main color rgba : (60, 179, 113);
@@ -13,6 +14,20 @@ import 'react-calendar/dist/Calendar.css';
 // -   orange : #FBAD54 (251, 173, 84, 1);
 // -   blue : #3a7e9f (58, 126, 159, 1);
 // -   black: 404040;
+// #58d791
+
+export const StyledModal = styled(Modal)`
+  background-color: white;
+  &.ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  &.ReactModal__Content {
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    background-color: white;
+  }
+`;
 
 export const Button = styled.button`
   background-color: #3cb371;
@@ -41,7 +56,7 @@ export const Input = styled.input`
         border: none;
         border-radius: 4px;
         padding: 10px 20px;
-        width: 100%;
+        width: 98%;
         &:hover {
             background-color: #3cb371;
             color: white;
@@ -69,7 +84,29 @@ export const Input = styled.input`
         &:default {
           color: red;
         }
-    }
+        &.tagForm{
+          width: 99%;
+          position: relative;
+          text-align: center;
+          border: 1px solid #3cb371;
+          border-radius: 4px;
+          &:focus {
+            border: none;
+            /* background-color: #0D8541; */
+            color: #0D8541
+        }
+        }    
+    }    
+    &[type="textArea"]{
+        width: 99%;
+        height: 30%; 
+        border: 1px solid  #3cb371;;
+        &:focus {
+          border: 2px solid  #3cb371; 
+        }
+        
+        }    
+    
 `;
 
 export const Div = styled.div`
@@ -82,46 +119,40 @@ export const Div = styled.div`
     }
     &.modal_top {
         flex-direction: column;
+        color: #0D8541;
     }
-    &top1 {
+    /* &top1 {
         display: flex;
-    }
-    &top2 {
+    } */
+    &.top2 {
         flex-direction: column;
         border: 10px;
     }
     &.top2-middle {
         display: flex;
+        margin-right: 100px;
     }
     &.modal_middle {
-        flex-direction: column;
-        width: 100%;
-        height: 75%;
-        position: relative;
-        /* overflow-y: scroll;  */
-        /* overflow-x: scroll;  */
-
-        /*  스크롤 바 설정 */
-        &::-webkit-scrollbar {
-        width: 10px;  
-        height: 20px; 
-        border: 1px solid black;
+      flex-direction: column;
+      width: 100%;
+      height: 75%;
+      position: relative;
+      overflow-y: scroll; 
+      overflow-x: scroll;    
+      /*  스크롤 바 설정 */
+      &::-webkit-scrollbar {
+      width: 10px;  
+      height: 20px; 
+      border: none;
     }
+      &::-webkit-scrollbar-thumb{
+        color: #3cb371;
+      }
 
     } 
     &.middle_top {
-      height: auto;
+      /* height: auto; */
       /* border: 1px solid #3cb371; */
-      height: 1000px;
-      overflow-y: scroll; 
-        overflow-x: scroll; 
-
-        /*  스크롤 바 설정 */
-        &::-webkit-scrollbar {
-        width: 10px;  
-        height: 20px; 
-        border: 1px solid black;
-    }
     }
     &.middle_middle {
       /* height: 10%; */
@@ -149,6 +180,12 @@ export const Div = styled.div`
       height: 100px;
       background-color: black;
     }
+
+    &.memberList {
+      padding-left: 10px;
+      color:#0D8541;
+    }
+
 `;
 
 export const StyledCalendar = styled(Calendar)`
@@ -199,7 +236,9 @@ export const Td = styled.td`
     text-align: right;
     color: #3cb371;
     padding-right: 5px;
-    background-color: white;
+  }
+  &.memberTd{
+    text-align: center;
   }
 `;
 
@@ -209,3 +248,7 @@ export const Tr = styled.tr`
   }
 `;
 
+export const Label = styled.label`
+  color: #3cb371;
+  border: 1px solid black;
+`;
