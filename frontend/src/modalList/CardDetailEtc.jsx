@@ -6,10 +6,6 @@ import Modal from "react-modal";
 import * as A from "../style/test";
 import { CiUser } from "react-icons/ci";
 import axios from "axios";
-import Prism from "prismjs";
-import 'prismjs/components/prism-javascript' // Language
-// import 'prismjs/themes/prism-darcula.css' // Theme
-import "../style/codeTheme.css"
 
 function CardDetail(props) {
   const c_id = props;
@@ -133,7 +129,7 @@ function CardDetail(props) {
 
   return (
     <div>
-      <A.Button onClick={openModal}>카드 상세</A.Button>
+      <A.Button onClick={openModal}>Etc</A.Button>
       <Modal
         isOpen={isOpen}
         onRequestClose={closeModal}
@@ -143,8 +139,8 @@ function CardDetail(props) {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
           },
           content: {
-            width: "90%",
-            height: "90%",
+            width: "500px",
+            height: "70%",
             margin: "auto",
           },
         }}
@@ -181,31 +177,12 @@ function CardDetail(props) {
           {/* 모달 TOP 끝 */}
           {/* 모달 Middle 시작*/}
           <A.Div className="modal_middle">
-          <pre>
-          <code className="language-javascript">
-            &lt;div&gt; Markup here... &lt;/div&gt;
-          </code>
-        </pre>
             <A.Div className="middle_top">
-              <table>
-                <tbody>
-                  {Object.keys(text).map((key, index) => (
-                    
-                    <A.Tr key={index}>
-                      <A.Td className="num">{index + 1}</A.Td>
-                      <A.Td onClick={() => tableClick(index + 1)}>
-                      <pre>
-          <code className="language-javascript">
-                        {" "}
-                        {text[key]}</code>
-        </pre>
-                      </A.Td>
-                    </A.Tr>
-                  ))}
-                </tbody>
-              </table>
+             
             </A.Div>
-            <A.Div className="middle_middle"></A.Div>
+            <A.Div className="middle_middle">
+            <A.Input type="textArea" />
+            </A.Div>
             <A.Div className="middle_bottom">
               <A.Input
                 className="input_comment"
@@ -214,6 +191,7 @@ function CardDetail(props) {
                 placeholder=" Add Comment.."
                 defaultValue={isComment}
               />
+              
               {showButton && <A.Input type="button" value="등록"></A.Input>}
             </A.Div>
           </A.Div>
