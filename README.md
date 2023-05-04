@@ -33,6 +33,7 @@
 2. 제목 끝에 . 금지
 3. test
 4. asdfasdf
+5.asdf
 
 ### git type
 
