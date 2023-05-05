@@ -1,4 +1,4 @@
-* {
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,26 +8,12 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-    height: 100vh;
-    overflow: hidden;
-}
-
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
 }
 
 a {
-    color: #404040;
+    color: black;
     text-decoration: none;
-}
-
-button {
-    background-color: transparent;
-    border: none;
-}
-
-.App {
-    display: flex;
 }

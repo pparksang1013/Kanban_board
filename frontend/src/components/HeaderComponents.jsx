@@ -1,48 +1,37 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-// COMPONENT
-import NavPage from "../pages/NavPage";
-
-import icons from "../style/icons/icons";
-
 const HeaderBox = styled.header`
+    padding: 2.2rem 5rem;
     height: 100vh;
-    width: 18rem;
-    box-shadow: 1px 1px rgba(0, 0, 0, 0.2);
-    position: relative;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
 
-    .folder_icon {
-        position: absolute;
-        top: 0.5%;
-        right: 2%;
-        color: ${({ theme }) => theme.color.grey};
-        font-size: 1.8rem;
-        cursor: pointer;
+    .logo {
+        font-size: 28px;
+        font-weight: 800;
+        font-style: italic;
+        color: #447ef2;
+        font-family: "Poppins";
+        margin-bottom: 2rem;
     }
 
-    .logo_link {
+    a {
         display: block;
-        margin: 10px 0 0 0;
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 900;
-            color: ${({ theme }) => theme.color.main};
-            margin: 1.4rem 0 1rem 2.2rem;
-            /* border-bottom: 0.1em solid ${({ theme }) => theme.color.main}; */
-        }
+        margin-bottom: 10px;
+        font-family: "Pretendard-SemiBold";
     }
 `;
 
 function HeaderComponents() {
     return (
-        <HeaderBox>
-            {icons.folderIcon}
-            <Link to="/" className="logo_link">
-                <p className="logo">LOGO</p>
+        <HeaderBox font={"Poppins"}>
+            <Link to="/">
+                <p className="logo">KanBan</p>
             </Link>
-            <NavPage />
+            <Link to="/kanbanboard">보드</Link>
+            <Link to="/dashboard">대쉬보드</Link>
+            <Link to="/calendar">캘린더</Link>
+            
         </HeaderBox>
     );
 }
