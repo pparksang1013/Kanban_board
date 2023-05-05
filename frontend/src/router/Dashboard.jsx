@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 // CHART
-import BarChart from "../chart/BarChart";
-import DonutChart from "../chart/DonutChart";
-import RangeBarChart from "../chart/RangeBarChart";
+import BarChart from "../pages/chart/BarChart";
+import DonutChart from "../pages/chart/DonutChart";
+import RangeBarChart from "../pages/chart/RangeBarChart";
 
 const Dashboard_Wrapper = styled.section`
     padding: 2.2rem 5rem;
