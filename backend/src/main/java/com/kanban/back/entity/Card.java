@@ -1,6 +1,7 @@
 package com.kanban.back.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kanban.back.dto.reponseDTO.detailpageDTO.CardDetailDTO;
 import com.kanban.back.dto.reponseDTO.mainpageDTO.CardMainDTO;
 import com.kanban.back.dto.requestDTO.CardReqDTO;
 import jakarta.persistence.*;
@@ -9,7 +10,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -58,7 +61,13 @@ public class Card {
     private List<Tag> tags;
     @OneToMany(mappedBy = "card", cascade = CascadeType.REMOVE)
     private List<TmpTable> tmpTables;
+    private LocalDate c_start_date;
+    private LocalDate c_end_date;
 
+    @PrePersist
+    public void prePersist() {
+        this.c_del_yn = this.c_del_yn == null ? "no" : this.c_del_yn;
+    }
     public CardMainDTO toMainDTO(){
         return CardMainDTO.builder()
                 .c_title(c_title)
@@ -73,12 +82,24 @@ public class Card {
                 .c_upd_date(c_upd_date)
                 .c_description(c_description)
                 .c_del_yn(c_del_yn)
-                .cardPartners(cardPartners)
-                .comments(comments)
-                .tags(tags)
-                .tmpTables(tmpTables)
+                .cardPartners(cardPartners.stream().map(s-> s.toMainDTO()).toList())
+                .comments(comments.stream().map(s-> s.toMainDTO()).toList())
+                .tags(tags.stream().map(s-> s.toMainDTO()).toList())
+                .tmpTables(tmpTables.stream().map(s-> s.toMainDTO()).toList())
                 .build();
     }
+    public CardDetailDTO toDetailDTO(){
+        return CardDetailDTO.builder()
+                .c_id(c_id)
+                .c_description(c_description)
+                .cardPartners(cardPartners.stream().map(s->s.toDetailDTO()).toList())
+                .comments(comments.stream().map(s->s.toDetailDTO()).toList())
+                .tags(tags.stream().map(s->s.toDetailDTO()).toList())
+                .c_start_date(c_start_date)
+                .c_end_date(c_end_date)
+                .build();
+    }
+
     public void update(CardReqDTO cardReqDTO){
         if(cardReqDTO.getC_title() != null) this.c_title = cardReqDTO.getC_title();
         if(cardReqDTO.getC_position() != null) this.c_position = cardReqDTO.getC_position();

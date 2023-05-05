@@ -1,8 +1,6 @@
 package com.kanban.back.dto.reponseDTO.mainpageDTO;
 
-import com.kanban.back.entity.CardPartner;
-import com.kanban.back.entity.BoardUser;
-import com.kanban.back.entity.Task;
+import com.kanban.back.entity.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -22,9 +20,9 @@ public class BoardMainDTO {
     private String b_creator;
     private String b_del_yn;
     private String b_admin;
-    private List<Task> tasks;
-    private List<CardPartner> cardPartners;
-    private List<BoardUser> boardUsers;
-    private List<String> joinUsers;
-
+//    @JsonIgnoreProperties(value = {"t_create_date","t_type","t_upd_date","t_upd_p","t_del_p","t_del_yn"})
+    private List<TaskMainDTO> tasks;
+    private List<CardPartnerMainDTO> cardPartners;
+    private List<BoardUserMainDTO> boardUsers;
+    private List<UserTableMainDTO> userTables;
 }

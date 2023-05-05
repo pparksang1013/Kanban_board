@@ -16,8 +16,8 @@ public class UserTableMainDTO {
     private String u_name;
     private String u_email;
     private String u_id;
-    private List<CardPartner> cardPartners;
-    private List<Comment> comments;
-    private List<TmpTable> tmpTables;
-    private List<BoardUser> boardUsers;
+    private List<CardPartnerMainDTO> cardPartners;
+    private List<CommentMainDTO> comments;
+    private List<TmpTableMainDTO> tmpTables;
+    private List<BoardUserMainDTO> boardUsers;
 }

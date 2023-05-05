@@ -4,8 +4,6 @@ import com.kanban.back.dto.reponseDTO.mainpageDTO.TaskMainDTO;
 import com.kanban.back.dto.requestDTO.TaskReqDTO;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -44,10 +42,14 @@ public class Task {
     @JsonIgnore
     private Board board;
 
-    @Fetch(FetchMode.SUBSELECT)
+//    @Fetch(FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "task", cascade = CascadeType.REMOVE)
     private List<Card> cards;
 
+    @PrePersist
+    public void prePersist() {
+        this.t_del_yn = this.t_del_yn == null ? "no" : this.t_del_yn;
+    }
     public TaskMainDTO toMainDTO(){
         return TaskMainDTO.builder()
                 .t_id(t_id)
@@ -61,7 +63,7 @@ public class Task {
                 .t_del_yn(t_del_yn)
                 .t_position(t_position)
                 .board(board)
-                .cards(cards)
+                .cards(cards.stream().map(s-> s.toMainDTO()).toList())
                 .build();
     }
 

@@ -1,7 +1,8 @@
 package com.kanban.back.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kanban.back.dto.reponseDTO.mainpageDTO.*;
+import com.kanban.back.dto.reponseDTO.detailpageDTO.CardPartnerDetailDTO;
+import com.kanban.back.dto.reponseDTO.mainpageDTO.CardPartnerMainDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,6 +37,12 @@ public class CardPartner {
                 .board(board)
                 .card(card)
                 .userTable(userTable)
+                .partner_id(partner_id)
+                .build();
+    }
+    public CardPartnerDetailDTO toDetailDTO(){
+        return CardPartnerDetailDTO.builder()
+                .userTable(userTable.toDetailDTO())
                 .partner_id(partner_id)
                 .build();
     }
