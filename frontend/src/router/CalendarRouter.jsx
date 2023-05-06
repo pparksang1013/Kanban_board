@@ -1,63 +1,22 @@
-import Calendar from "react-calendar";
+/*
+캘린더 컴포넌트 
+*/
 import styled from "styled-components";
 
+// 컴포넌트
+import CalendarPage from "../pages/calendar/CalendarPage";
+import CalendarListPage from "../pages/calendar/CalendarListPage";
+
 const CalendarWrapper = styled.section`
-    font-family: "Poppins", "Pretendard";
+    display: flex;
     padding: 2.2rem 5rem;
-
-    abbr[title] {
-        text-decoration: none;
-    }
-
-    .react-calendar {
-        width: 76vw;
-        height: 100vh;
-
-        button {
-            background-color: transparent;
-            border: none;
-        }
-
-        .react-calendar__month-view__weekNumbers .react-calendar__tile {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75em;
-            font-weight: bold;
-        }
-
-        .react-calendar__month-view__days__day--weekend {
-            color: #d10000;
-        }
-
-        .react-calendar__tile {
-            width: 100px;
-            height: 100px;
-        }
-
-        .react-calendar__tile--now {
-            background: #ffff76;
-        }
-
-        .highlight {
-            background: #f3a95f;
-        }
-    }
 `;
 
 function CalendarRouter() {
-    const marks = [
-        "15-01-2023",
-        "03-01-2023",
-        "07-01-2023",
-        "12-01-2023",
-        "13-01-2023",
-        "15-01-2024",
-    ];
-
     return (
         <CalendarWrapper>
-            <Calendar />
+            <CalendarPage />
+            <CalendarListPage />
         </CalendarWrapper>
     );
 }
