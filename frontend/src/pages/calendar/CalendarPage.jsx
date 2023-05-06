@@ -98,11 +98,13 @@ const CalendarBox = styled(Calendar)`
 
     /* 달력 body */
     .react-calendar__viewContainer {
+        margin-top: 2rem;
         /* Week days */
         .react-calendar__month-view__weekdays {
             font-size: 1.2rem;
             font-weight: 400;
             color: ${({ theme }) => theme.color.grey};
+            text-align: center;
 
             abbr[title] {
                 text-decoration: none;
@@ -140,11 +142,7 @@ const CalendarBox = styled(Calendar)`
 function CalendarPage() {
     const marks = ["2023 04 01", "2023 04 10"];
 
-    const calendarDayClick = (value, event) => {
-        console.log(
-            moment(value).format("DD") === event.target.children[0].innerText
-        );
-    };
+    const calendarDayClick = (value, event) => {};
 
     return (
         <>

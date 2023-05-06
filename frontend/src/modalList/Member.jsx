@@ -1,48 +1,40 @@
 import React, { useState } from "react";
+import styled from 'styled-components';
 import Modal from "react-modal";
-import * as A from "../style/test";
+
+const IFrame = styled.iframe`
+  width: 100%;                                    
+  height: 100%;
+`;
+
 
 function Member() {
-  const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
-  // 모달창 Open
-  const openModal = () => {
-    setIsOpen(true);
-  };
-  // 모달창 Close
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+    // 모달창 Open
+    const openModal = () => {
+        setIsOpen(true);
+    };
+    // 모달창 Close
+    const closeModal = () => {
+        setIsOpen(false);
+    };
 
+    return (
+        <div className="member">
+            <button onClick={openModal}>멤버추가</button>
+            <Modal isOpen={isOpen} onRequestClose={closeModal} style={IFrame} ariaHideApp={false}>
+                <button onClick={closeModal}>Close Modal</button>
 
-  return (
-    <div className="member">
-      <A.Button onClick={openModal} className="plus">Member</A.Button>
-      <Modal isOpen={isOpen} onRequestClose={closeModal} ariaHideApp={false} style={{
-        overlay: {
-          backgroundColor: 'rgba(0, 0, 0, 0.5)'
-        },
-        content: {
-          width: '300px',
-          height: '300px',
-          margin: 'auto'
-        }
-      }}>
-        <A.Div className="modal_box">
-          <A.Div className="modal_top">
-            <A.Button onClick={closeModal} className="btn_close">X</A.Button>
-            <A.Modal_Title>Member</A.Modal_Title>
-          </A.Div>
-          <A.Div className="modal_middle">
-            <A.Input type="text" placeholder=" Add Member.."></A.Input>
-          </A.Div>
-          <A.Div className="modal_bottom">
-            <A.Input type="button" value="저장"></A.Input>
-          </A.Div>
-        </A.Div>
-      </Modal>
-    </div>
-  );
+                <div className="left">
+                    <label> 멤버추가</label>
+                    <input type="text"></input>
+                </div><button onClick={closeModal}>Close Modal</button>
+            </Modal>
+
+        </div>
+
+    );
 }
 
 export default Member;
