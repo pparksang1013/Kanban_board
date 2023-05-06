@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-    html, body, div, span, applet, object, iframe,
+html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -20,9 +20,9 @@ time, mark, audio, video {
 	font-size: 100%;
 	vertical-align: baseline;
 	box-sizing: border-box;
-    font-family: "Poppins", "Pretendard", sans-serif;
     word-wrap: break-word;
     -webkit-font-smoothing: antialiased;
+    font-family: "Poppins", "Pretendard", sans-serif;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -33,6 +33,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+
 }
 
 ol, ul {
@@ -59,9 +60,14 @@ a {
     text-decoration: none;
 }
 
+a:visited {
+    text-decoration: none;
+}
+
 button {
     background-color: transparent;
     border: none;
+    font-family: "Poppins", "Pretendard", sans-serif;
 }
 
 
