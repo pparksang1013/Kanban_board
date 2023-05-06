@@ -6,11 +6,6 @@ import Modal from "react-modal";
 import * as A from "../style/test";
 import { CiUser } from "react-icons/ci";
 import axios from "axios";
-import Prism from "prismjs";
-import "prismjs/components/prism-javascript"; // Language
-// import 'prismjs/themes/prism-darcula.css' // Theme
-
-import FileForm from "./FileForm";
 
 function CardDetail(props) {
   const c_id = props;
@@ -29,7 +24,7 @@ function CardDetail(props) {
     dDay: "",
     tagList: "",
     commentId: "",
-    commentList: "",
+    commentList: ""
   });
 
   // 모달창 Open
@@ -49,7 +44,7 @@ function CardDetail(props) {
       const responseData = response.data;
 
       setCardInfo((prevState) => {
-        return {...prevState,
+        return {
           memberList: Object.values(responseData.cardPartners).map(
             (cardPartners) => cardPartners.userTable.u_id
           ),
@@ -62,9 +57,9 @@ function CardDetail(props) {
           commentId: Object.values(responseData.comments).map(
             (comments) => comments.userTable.u_id
           ),
-          commentList: Object.values(responseData.comments).map(
+          commentList:Object.values(responseData.comments).map(
             (comments) => comments.comment_contents
-          ),
+          )
         };
       });
     } catch (error) {
@@ -134,7 +129,7 @@ function CardDetail(props) {
 
   return (
     <div>
-      <A.Button onClick={openModal}>카드 상세</A.Button>
+      <A.Button onClick={openModal}>Etc</A.Button>
       <Modal
         isOpen={isOpen}
         onRequestClose={closeModal}
@@ -144,8 +139,8 @@ function CardDetail(props) {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
           },
           content: {
-            width: "90%",
-            height: "90%",
+            width: "500px",
+            height: "70%",
             margin: "auto",
           },
         }}
@@ -168,7 +163,6 @@ function CardDetail(props) {
               <A.Div className="top2-middle">
                 {/* 아이콘 쓸지말지 고민을 해볼까? */}
                 {/* <VscCalendar/> */}
-                <FileForm/>
                 <Calendar />
                 <A.Div>
                   {cardInfo.startDate} {cardInfo.endDate} {cardInfo.dDay}
@@ -184,26 +178,11 @@ function CardDetail(props) {
           {/* 모달 Middle 시작*/}
           <A.Div className="modal_middle">
             <A.Div className="middle_top">
-              {/* 리스트 파일 목록 구현 */}
-               <table>
-                <tbody>
-                  {Object.keys(text).map((key, index) => (
-                    <A.Tr key={index}>
-                      <A.Td className="num">{index + 1}</A.Td>
-                      <A.Td onClick={() => tableClick(index + 1)}>
-                        <pre>
-                          <code className="language-javascript">
-                            {" "}
-                            {text[key]}
-                          </code>
-                        </pre>
-                      </A.Td>
-                    </A.Tr>
-                  ))}
-                </tbody>
-              </table>
+             
             </A.Div>
-            <A.Div className="middle_middle"></A.Div>
+            <A.Div className="middle_middle">
+            <A.Input type="textArea" />
+            </A.Div>
             <A.Div className="middle_bottom">
               <A.Input
                 className="input_comment"
@@ -212,6 +191,7 @@ function CardDetail(props) {
                 placeholder=" Add Comment.."
                 defaultValue={isComment}
               />
+              
               {showButton && <A.Input type="button" value="등록"></A.Input>}
             </A.Div>
           </A.Div>
