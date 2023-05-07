@@ -1,5 +1,6 @@
 package com.kanban.back.service;
 
+import com.kanban.back.Exception.FileStorageException;
 import com.kanban.back.dto.reponseDTO.mainpageDTO.BoardMainDTO;
 import com.kanban.back.dto.reponseDTO.mainpageDTO.BoardUserMainDTO;
 import com.kanban.back.dto.reponseDTO.mainpageDTO.TaskMainDTO;
@@ -15,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -76,11 +80,18 @@ public class MainPageService {
         taskRepository.deleteById(t_id);
     }
 
-    public void createCard(CardReqDTO cardReqDTO){
+    public void createCard(CardReqDTO cardReqDTO) {
+        Path fileStorageLocation = Paths.get("C:/Users/upload").normalize();
+        // 파일 만드는 코드
+        Path newFolder = fileStorageLocation.resolve(cardReqDTO.getC_title());
+        try {
+            Files.createDirectory(newFolder);
+        } catch (Exception ex) {
+            throw new FileStorageException("폴더를 생성할 수 없습니다.", ex);
+        }
         Card card = cardReqDTO.toEntity();
         cardRepository.save(card);
     }
-
     @Transactional
     public void updateCard(CardReqDTO cardReqDTO){
         Card card = cardRepository.getById(cardReqDTO.getC_id());

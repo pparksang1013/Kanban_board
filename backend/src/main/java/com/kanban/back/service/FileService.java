@@ -21,7 +21,7 @@ import java.util.Properties;
 
 @Service
 public class FileService {
-    private final Path fileStorageLocation = Paths.get("C:/Users/upload").normalize();
+    private final Path fileStorageLocation = Paths.get("C:/Users/upload");
 
     public String storeFile(MultipartFile file) {
         SimpleDateFormat sdf = new SimpleDateFormat ("yyyyMMddhhmmss_");
@@ -48,16 +48,16 @@ public class FileService {
 
     public Resource loadFileAsResource(String fileName) {
         try {
-            Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
+            Path filePath = this.fileStorageLocation.resolve(fileName);
             System.out.println(filePath.toUri());
             Resource resource = new UrlResource(filePath.toUri());
             if(resource.exists()) {
                 return resource;
             } else {
-                throw new MyFileNotFoundException("File not found " + fileName);
+                throw new MyFileNotFoundException("파일을 찾을 수 없습니다" + fileName);
             }
         } catch (MalformedURLException ex) {
-            throw new MyFileNotFoundException("File not found " + fileName, ex);
+            throw new MyFileNotFoundException("파일을 찾을 수 없습니다" + fileName, ex);
         }
     }
 }
