@@ -9,7 +9,6 @@ import lombok.*;
 @Builder
 @ToString
 public class TagMainDTO {
-    private Card card;
     private Integer tag_id;
     private String tag_name;
     private Integer tag_color;

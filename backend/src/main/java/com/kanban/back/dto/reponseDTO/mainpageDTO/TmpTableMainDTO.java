@@ -10,8 +10,7 @@ import lombok.*;
 @Builder
 @ToString
 public class TmpTableMainDTO {
-    private Card card;
-    private UserTable userTable;
+    private UserTableMainDTO userTable;
     private String commit_status;
     private Integer tmp_id;
 

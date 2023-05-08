@@ -42,10 +42,6 @@ public class UserTable {
                 .u_name(u_name)
                 .u_email(u_email)
                 .u_id(u_id)
-                .cardPartners(cardPartners.stream().map(s-> s.toMainDTO()).toList())
-                .comments(comments.stream().map(s-> s.toMainDTO()).toList())
-                .tmpTables(tmpTables.stream().map(s-> s.toMainDTO()).toList())
-                .boardUsers(boardUsers.stream().map(s-> s.toMainDTO()).toList())
                 .build();
     }
 

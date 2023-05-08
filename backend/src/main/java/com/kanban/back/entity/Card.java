@@ -71,12 +71,10 @@ public class Card {
     public CardMainDTO toMainDTO(){
         return CardMainDTO.builder()
                 .c_title(c_title)
-                .board(board)
                 .c_position(c_position)
                 .c_create_date(c_create_date)
                 .c_creator(c_creator)
                 .c_id(c_id)
-                .task(task)
                 .c_upd_p(c_upd_p)
                 .c_del_p(c_del_p)
                 .c_upd_date(c_upd_date)

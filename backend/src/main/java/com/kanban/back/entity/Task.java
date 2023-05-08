@@ -62,7 +62,6 @@ public class Task {
                 .t_del_p(t_del_p)
                 .t_del_yn(t_del_yn)
                 .t_position(t_position)
-                .board(board)
                 .cards(cards.stream().map(s-> s.toMainDTO()).toList())
                 .build();
     }

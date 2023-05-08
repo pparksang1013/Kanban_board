@@ -15,12 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 public class CardMainDTO {
     private String c_title;
-    private Board board;
     private Integer c_position;
     private LocalDateTime c_create_date;
     private String c_creator;
     private Integer c_id;
-    private Task task;
     private String c_upd_p;
     private String c_del_p;
     private LocalDateTime c_upd_date;

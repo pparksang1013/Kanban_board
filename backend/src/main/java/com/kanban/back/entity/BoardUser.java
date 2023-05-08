@@ -29,8 +29,8 @@ public class BoardUser {
     private Integer board_user_id;
     public BoardUserMainDTO toMainDTO(){
         return BoardUserMainDTO.builder()
-                .board(board)
-                .userTable(userTable)
+                .board(board.toMainDTO())
+                .userTable(userTable.toMainDTO())
                 .board_user_id(board_user_id)
                 .build();
     }

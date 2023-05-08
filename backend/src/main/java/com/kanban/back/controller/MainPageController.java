@@ -19,9 +19,9 @@ public class MainPageController {
     public void createBoard(@RequestBody BoardReqDTO boardReqDTO){
         mainPageService.createBoard(boardReqDTO);
     }
-    @GetMapping("board/{u_id}")
-    public BoardMainDTO getBoard(@PathVariable String u_id){
-        return mainPageService.getBoard(u_id);
+    @GetMapping("board/{b_id}")
+    public BoardMainDTO getBoard(@PathVariable Integer b_id){
+        return mainPageService.getBoard(b_id);
     }
     @PutMapping("board")
     public void updateBoard(@RequestBody BoardReqDTO boardReqDTO){

@@ -30,8 +30,7 @@ public class TmpTable {
 
     public TmpTableMainDTO toMainDTO(){
         return TmpTableMainDTO.builder()
-                .card(card)
-                .userTable(userTable)
+                .userTable(userTable.toMainDTO())
                 .commit_status(commit_status)
                 .tmp_id(tmp_id)
                 .build();

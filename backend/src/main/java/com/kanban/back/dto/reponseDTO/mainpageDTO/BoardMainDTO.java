@@ -23,6 +23,5 @@ public class BoardMainDTO {
 //    @JsonIgnoreProperties(value = {"t_create_date","t_type","t_upd_date","t_upd_p","t_del_p","t_del_yn"})
     private List<TaskMainDTO> tasks;
     private List<CardPartnerMainDTO> cardPartners;
-    private List<BoardUserMainDTO> boardUsers;
     private List<UserTableMainDTO> userTables;
 }

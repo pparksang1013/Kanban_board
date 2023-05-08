@@ -43,7 +43,7 @@ public class FileController {
                 .path(fileName)
                 .toUriString();
 
-        return "잘 저장 되었습니다";
+        return fileName + "\n" +fileExt + "\n" + fileOriginalName + "\n" + fileDownloadUri;
     }
 
     @PostMapping("/uploadmultiplefiles")

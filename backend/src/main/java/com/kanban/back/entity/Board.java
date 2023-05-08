@@ -61,7 +61,6 @@ public class Board {
                 .b_admin(b_admin)
                 .tasks(tasks.stream().map(s->s.toMainDTO()).toList())
                 .cardPartners(cardPartners.stream().map(s-> s.toMainDTO()).toList())
-                .boardUsers(boardUsers.stream().map(s-> s.toMainDTO()).toList())
                 .build();
     }
 

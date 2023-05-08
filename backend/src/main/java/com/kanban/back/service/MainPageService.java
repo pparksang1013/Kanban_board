@@ -44,14 +44,14 @@ public class MainPageService {
         defaultTask(board);
     }
     @Transactional
-    public BoardMainDTO getBoard(String u_id){
-        Board board = boardRepository.get_id_procedure(u_id);
+    public BoardMainDTO getBoard(Integer b_id){
+        Board board = boardRepository.getById(b_id);
         BoardMainDTO boardMainDTO = board.toMainDTO();
 
-        // board에 속해있는 user정보 추가하는 코드
+//        // board에 속해있는 user정보 추가하는 코드
         List<UserTableMainDTO> userTables = new ArrayList<>();
-            for (BoardUserMainDTO boardUserMainDTO : boardMainDTO.getBoardUsers()) {
-                userTables.add(boardUserMainDTO.getUserTable().toMainDTO());
+            for (BoardUser boardUser : board.getBoardUsers()) {
+                userTables.add(boardUser.getUserTable().toMainDTO());
             }
             boardMainDTO.setUserTables(userTables);
         return boardMainDTO;

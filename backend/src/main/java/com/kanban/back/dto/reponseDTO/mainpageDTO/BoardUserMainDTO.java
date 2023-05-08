@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @ToString
 public class BoardUserMainDTO {
-    private Board board;
-    private UserTable userTable;
+    private BoardMainDTO board;
+    private UserTableMainDTO userTable;
     private Integer board_user_id;
 }

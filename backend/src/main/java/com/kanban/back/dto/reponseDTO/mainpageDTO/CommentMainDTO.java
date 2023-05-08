@@ -12,8 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @ToString
 public class CommentMainDTO {
-    private Card card;
-    private UserTable userTable;
+    private UserTableMainDTO userTable;
     private String del_yn;
     private Integer comment_id;
     private LocalDateTime comment_date;

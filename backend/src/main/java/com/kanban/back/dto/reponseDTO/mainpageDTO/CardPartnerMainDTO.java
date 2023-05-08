@@ -11,9 +11,7 @@ import lombok.*;
 @Builder
 @ToString
 public class CardPartnerMainDTO {
-    private Board board;
-    private Card card;
-    private UserTable userTable;
+    private UserTableMainDTO userTable;
     private Integer partner_id;
 
 

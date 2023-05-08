@@ -34,9 +34,7 @@ public class CardPartner {
 
     public CardPartnerMainDTO toMainDTO(){
         return CardPartnerMainDTO.builder()
-                .board(board)
-                .card(card)
-                .userTable(userTable)
+                .userTable(userTable.toMainDTO())
                 .partner_id(partner_id)
                 .build();
     }

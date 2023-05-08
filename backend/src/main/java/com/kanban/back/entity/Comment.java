@@ -43,8 +43,7 @@ public class Comment {
     }
     public CommentMainDTO toMainDTO(){
         return CommentMainDTO.builder()
-                .card(card)
-                .userTable(userTable)
+                .userTable(userTable.toMainDTO())
                 .del_yn(del_yn)
                 .comment_id(comment_id)
                 .comment_date(comment_date)

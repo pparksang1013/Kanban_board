@@ -27,7 +27,6 @@ public class Tag {
 
     public TagMainDTO toMainDTO(){
         return TagMainDTO.builder()
-                .card(card)
                 .tag_id(tag_id)
                 .tag_name(tag_name)
                 .tag_color(tag_color)
