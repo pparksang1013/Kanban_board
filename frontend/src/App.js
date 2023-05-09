@@ -4,7 +4,7 @@ import styled from "styled-components";
 // COMPONENT
 import DashboardRouter from "./router/DashboardRouter";
 import CalendarRouter from "./router/CalendarRouter";
-import MainRouter from "./pages/MainRouter";
+import MainRouter from "./router/MainRouter";
 import HeaderComponents from "./components/HeaderComponents";
 
 const Wrapper = styled.div`
