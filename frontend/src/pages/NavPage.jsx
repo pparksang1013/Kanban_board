@@ -3,28 +3,22 @@ import styled from "styled-components";
 import icons from "../style/icons/icons";
 
 const NavBox = styled.nav`
-    width: ${({ fold }) => (fold ? "8rem" : " 18rem")};
-    min-width: ${({ fold }) => (fold ? "8rem" : " 18rem")};
-    display: ${({ fold }) => (fold ? "flex" : "block")};
-    flex-direction: column;
     margin-top: 2rem;
 
     .nav_link {
         display: block;
+        width: 100%;
         height: 2.4rem;
         position: relative;
         margin: ${({ fold }) =>
-            fold ? "5px 0" : "0.2rem 0.8rem 0.2em 1.4rem"};
+            fold ? "12px 20px" : "0.2rem 0.8rem 0.2em 1.4rem"};
 
         .nav_contents {
             position: absolute;
-            width: 100%;
             top: 50%;
             transform: translateY(-50%);
             padding: 0.8em;
             display: ${({ fold }) => (fold ? "flex" : "block")};
-            flex-direction: column;
-            align-items: center;
 
             .nav_icon {
                 height: 100%;
@@ -35,7 +29,6 @@ const NavBox = styled.nav`
 
             .nav_text {
                 display: ${({ fold }) => (fold ? "none" : "inline-block")};
-                height: 100%;
                 vertical-align: middle;
                 padding-left: 0.5em;
             }
