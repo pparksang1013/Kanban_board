@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import * as A from "../style/test";
+import * as A from "../../style/test";
 import axios from "axios";
 
-function Tag() {
+function Tag(taglist) {
+  const test = taglist.props.split('    ');
   const [isOpen, setIsOpen] = useState(false);
-  const [newTag, setNewTag] = useState([]);
-  const [tag, setTag] = useState(null);
+  // const [newTag, setNewTag] = useState([test]);
+  const [newTag, setNewTag] = useState(test);
 
   // 모달창 Open
   function openModal() {
@@ -15,7 +16,9 @@ function Tag() {
   // 모달창 Close
   function closeModal() {
     setIsOpen(false);
+    setNewTag([test]);
   }
+  
 
   // axios.get("",{
   //   // c_id: c_id
@@ -28,31 +31,34 @@ function Tag() {
   //   console.log(error.message);
   // })
 
+  // 랜덤 색상 생성 함수
+  // function getRandomColor() {
+  //   const letters = "0123456789ABCDEF";
+  //   let color = "#";
+  //   for (let i = 0; i < 6; i++) {
+  //     color += letters[Math.floor(Math.random() * 16)];
+  //   }
+  //   return color;
+  // }
+
+
   // Enter 입력시 저장 및 라벨 생성
   function handleKeyPress(event) {
     if (event.key === "Enter") {
-      setNewTag([...newTag,event.target.value]);
+      setNewTag([...newTag, event.target.value]);
+      // getRandomColor();
       event.target.value = "";
-      
-      // axios
-      //   .post("", {
-      //     newLabel: newTag,
-      //   })
-      //   .then(function (response) {
-      //     alert("Label 저장이 완료되었습니다.");
-      //   })
-      //   .catch(function (error) {
-      //     console.log(error.message);
-      //   })
-      //   .finally(function () {
-      //     setNewTag(null);
-      //   });
     }
+  }
+  function handleRemove(index) {
+    const tag = [...newTag];
+    tag.splice(index, 1);
+    setNewTag(tag);
   }
   return (
     <div>
       <A.Button onClick={openModal} className="plus">
-        Tag
+        +Tag
       </A.Button>
       <Modal
         isOpen={isOpen}
@@ -83,12 +89,17 @@ function Tag() {
               className="tagForm"
               placeholder="Tag..."
               onKeyPress={handleKeyPress}
-            /><div>
-            {newTag.map((tag) => (
-              <span key={tag} className="labelList">{tag}</span>
-            ))}
-          </div>
-            
+            />
+            <div>
+              {newTag.map((tag, index) => (
+                <div key={index} className="labelList">{tag}
+                  <A.Span className="labelList">{tag}</A.Span>
+                  <A.Button type="button" onClick={() => handleRemove(index)}>
+                    X
+                  </A.Button>
+                </div>
+              ))}
+            </div>
           </A.Div>
           <A.Div className="modal_bottom">
             {/* <A.Input type="button" value="라벨추가"></A.Input> */}

@@ -3,11 +3,11 @@ import Calendar from "./Calendar";
 import Tag from "./Tag";
 import Member from "./Member";
 import Modal from "react-modal";
-import * as A from "../style/test";
+import * as A from "../../style/test";
 import { CiUser } from "react-icons/ci";
 import axios from "axios";
 
-function CardDetail(props) {
+function CardDetailEtc(props) {
   const c_id = props;
 
   const [inputValue, setInputValue] = useState("");
@@ -208,4 +208,4 @@ function CardDetail(props) {
   );
 }
 
-export default CardDetail;
+export default CardDetailEtc;

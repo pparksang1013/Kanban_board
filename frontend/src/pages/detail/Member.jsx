@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
-import * as A from "../style/test";
+import * as A from "../../style/test";
 import axios from "axios";
 
 function Member(member) {
@@ -78,7 +78,7 @@ function Member(member) {
   return (
     <div className="member">
       <A.Button onClick={openModal} className="plus">
-        Member
+        +Member
       </A.Button>
       <Modal
         isOpen={isOpen}
