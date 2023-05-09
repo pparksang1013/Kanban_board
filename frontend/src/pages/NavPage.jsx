@@ -3,32 +3,38 @@ import styled from "styled-components";
 import icons from "../style/icons/icons";
 
 const NavBox = styled.nav`
-    width: 280px;
-    min-height: 280px;
+    width: ${({ fold }) => (fold ? "8rem" : " 18rem")};
+    min-width: ${({ fold }) => (fold ? "8rem" : " 18rem")};
+    display: ${({ fold }) => (fold ? "flex" : "block")};
+    flex-direction: column;
     margin-top: 2rem;
 
     .nav_link {
         display: block;
         height: 2.4rem;
         position: relative;
-        margin: 0.2rem 0.8rem 0.2em 1.4rem;
+        margin: ${({ fold }) =>
+            fold ? "5px 0" : "0.2rem 0.8rem 0.2em 1.4rem"};
 
         .nav_contents {
             position: absolute;
+            width: 100%;
             top: 50%;
             transform: translateY(-50%);
             padding: 0.8em;
+            display: ${({ fold }) => (fold ? "flex" : "block")};
+            flex-direction: column;
+            align-items: center;
 
             .nav_icon {
-                display: inline-block;
                 height: 100%;
-                font-size: 1.1em;
+                font-size: ${({ fold }) => (fold ? "2em" : " 1.1em")};
                 vertical-align: middle;
-                padding-top: 0.16em;
+                transition: all 0.05s;
             }
 
             .nav_text {
-                display: inline-block;
+                display: ${({ fold }) => (fold ? "none" : "inline-block")};
                 height: 100%;
                 vertical-align: middle;
                 padding-left: 0.5em;
@@ -54,29 +60,24 @@ const NavBox = styled.nav`
 
         &::before {
             content: "";
-            display: fixed;
             position: absolute;
             background-color: ${({ theme }) => theme.color.main};
             left: -9.1%;
-            width: 12px;
+            width: ${({ fold }) => (fold ? "0px" : "12px")};
             height: 100%;
         }
     }
 `;
 
-function NavPage() {
+function NavPage({ fold }) {
     const location = useLocation();
     const PATH_NAME = location.pathname;
 
     return (
-        <NavBox>
+        <NavBox fold={fold}>
             <Link
-                to="/kanbanboard"
-                className={
-                    PATH_NAME === "/" || PATH_NAME === "/kanbanboard"
-                        ? "nav_link active"
-                        : "nav_link "
-                }
+                to="/"
+                className={PATH_NAME === "/" ? "nav_link active" : "nav_link "}
             >
                 <div className="nav_contents">
                     <span className="nav_icon">{icons.boardIcon}</span>
