@@ -2,9 +2,7 @@ package com.kanban.back.entity;
 
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @ToString
-public class calendar {
+public class Calendar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cal_id;

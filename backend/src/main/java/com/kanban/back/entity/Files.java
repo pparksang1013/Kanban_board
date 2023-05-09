@@ -2,7 +2,6 @@ package com.kanban.back.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -17,7 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 @ToString
 @EntityListeners(AuditingEntityListener.class)
-public class files {
+public class Files {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer file_id;

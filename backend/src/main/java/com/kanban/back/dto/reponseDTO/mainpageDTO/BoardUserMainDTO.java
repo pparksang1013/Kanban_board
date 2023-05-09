@@ -1,7 +1,5 @@
 package com.kanban.back.dto.reponseDTO.mainpageDTO;
 
-import com.kanban.back.entity.Board;
-import com.kanban.back.entity.UserTable;
 import lombok.*;
 
 @Data

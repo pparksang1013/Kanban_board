@@ -1,8 +1,5 @@
 package com.kanban.back.dto.reponseDTO.mainpageDTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.kanban.back.entity.Board;
-import com.kanban.back.entity.Card;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

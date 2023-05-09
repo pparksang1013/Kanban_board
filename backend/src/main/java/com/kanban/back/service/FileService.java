@@ -2,6 +2,9 @@ package com.kanban.back.service;
 
 import com.kanban.back.Exception.FileStorageException;
 import com.kanban.back.Exception.MyFileNotFoundException;
+import com.kanban.back.dto.requestDTO.CardReqDTO;
+import com.kanban.back.dto.requestDTO.FilesReqDTO;
+import com.kanban.back.repository.FilesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -17,18 +20,33 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Properties;
 
 @Service
 public class FileService {
     private final Path fileStorageLocation = Paths.get("C:/Users/upload");
+    @Autowired
+    FilesRepository filesRepository;
 
-    public String storeFile(MultipartFile file) {
+    public String storeFile(MultipartFile file, Integer c_id) {
         SimpleDateFormat sdf = new SimpleDateFormat ("yyyyMMddhhmmss_");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String timeStamp = sdf.format(timestamp);
 
         String fileName = timeStamp + StringUtils.cleanPath(file.getOriginalFilename());
+
+        //확장자만 추출하는 형태 ex) exe , png, jpg ...
+        String fileExt = fileName.replaceAll("^.*\\.(.*)$", "$1");
+        // File DB에 저장
+        String filepath = this.fileStorageLocation.toString();
+        Long fileSize = file.getSize();
+        FilesReqDTO filesReqDTO = new FilesReqDTO();
+        filesReqDTO.setFile_name(fileName);
+        filesReqDTO.setFile_path(filepath);
+        filesReqDTO.setFile_ext(fileExt);
+        filesReqDTO.setFile_size(fileSize);
+        filesReqDTO.setCardReqDTO(CardReqDTO.builder().c_id(c_id).build());
+        com.kanban.back.entity.Files files = filesReqDTO.toEntity();
+        filesRepository.save(files);
 
         try {
             // Check if the file's name contains invalid characters

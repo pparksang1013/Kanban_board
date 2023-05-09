@@ -1,13 +1,10 @@
 package com.kanban.back.service;
 
 import com.kanban.back.dto.reponseDTO.detailpageDTO.CardDetailDTO;
-import com.kanban.back.dto.requestDTO.CardPartnerReqDTO;
 import com.kanban.back.entity.Card;
-import com.kanban.back.entity.CardPartner;
 import com.kanban.back.repository.CardPartnerRepository;
 import com.kanban.back.repository.CardRepository;
 import com.kanban.back.repository.TagRepository;
-import jakarta.persistence.Access;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

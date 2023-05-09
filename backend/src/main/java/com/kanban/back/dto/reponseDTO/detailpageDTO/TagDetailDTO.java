@@ -1,6 +1,5 @@
 package com.kanban.back.dto.reponseDTO.detailpageDTO;
 
-import com.kanban.back.entity.Card;
 import lombok.*;
 
 @Data
