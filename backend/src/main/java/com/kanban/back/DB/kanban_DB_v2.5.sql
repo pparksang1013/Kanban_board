@@ -63,7 +63,9 @@ CREATE TABLE card(
     c_del_p VARCHAR(100) comment "card 삭제자",
     c_upd_date datetime comment "card 수정날짜",
     c_description TEXT comment "card 설명",
-    c_del_yn VARCHAR(100) NOT NULL comment "card 삭제여부"
+    c_del_yn VARCHAR(100) NOT NULL comment "card 삭제여부",
+    c_start_date date not null comment "업무 시작 날짜",
+    c_end_date date not null comment "업무 마감 날짜"
  );
 
 
@@ -91,8 +93,8 @@ CREATE TABLE board_user(
     b_id int NOT NULL comment "board ID",
     constraint foreign key (b_id) references board (b_id),
     u_id VARCHAR (100) NOT NULL primary key comment "사용자 ID",
-    constraint foreign key (u_id) references user_table(u_id),
-    board_user_id int NOT NULL AUTO_INCREMENT primary key 
+    constraint foreign key (u_id) references user_table(u_id)
+    -- board_user_id int NOT NULL AUTO_INCREMENT primary key 
 );
 
 CREATE TABLE  comment(
