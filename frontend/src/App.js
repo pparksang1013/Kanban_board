@@ -4,7 +4,7 @@ import styled from "styled-components";
 // COMPONENT
 import DashboardRouter from "./router/DashboardRouter";
 import CalendarRouter from "./router/CalendarRouter";
-import Board from "./pages/Board";
+import MainRouter from "./router/MainRouter";
 import HeaderComponents from "./components/HeaderComponents";
 
 const Wrapper = styled.div`
@@ -17,7 +17,7 @@ function App() {
             <Wrapper>
                 <HeaderComponents />
                 <Routes>
-                    <Route path="/" element={<Board />} />
+                    <Route path="/" element={<MainRouter />} />
                     <Route path="/calendar" element={<CalendarRouter />} />
                     <Route path="/dashboard" element={<DashboardRouter />} />
                 </Routes>
