@@ -3,6 +3,7 @@ import {
     CiGrid42,
     CiFolderOn,
     CiSquareChevLeft,
+    CiSquareChevRight,
 } from "react-icons/ci";
 
 import {
@@ -16,7 +17,8 @@ const icons = {
     dashboardIcon: <CiGrid42 />,
     rightArrowIcon: <HiOutlineArrowNarrowRight />,
     leftArrowIcon: <HiOutlineArrowNarrowLeft />,
-    folderIcon: <CiSquareChevLeft className="folder_icon" />,
+    folderCloseIcon: <CiSquareChevLeft className="folder_close" />,
+    folderOpenIcon: <CiSquareChevRight className="folder_open" />,
 };
 
 export default icons;
