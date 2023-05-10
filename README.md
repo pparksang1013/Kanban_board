@@ -31,8 +31,7 @@
 
 1. 제목 첫글자는 대문자
 2. 제목 끝에 . 금지
-3. test
-4. donggyufdfsdfsd
+
 
 ### git type
 
