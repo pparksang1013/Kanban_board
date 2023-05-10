@@ -56,7 +56,8 @@ const NavBox = styled.nav`
             position: absolute;
             background-color: ${({ theme }) => theme.color.main};
             left: -9.1%;
-            width: ${({ fold }) => (fold ? "0px" : "12px")};
+            display: ${({ fold }) => (fold ? "none" : "inline-block")};
+            width: 12px;
             height: 100%;
         }
     }
