@@ -14,6 +14,7 @@ import 'react-calendar/dist/Calendar.css';
 // -   blue : #3a7e9f (58, 126, 159, 1);
 // -   black: 404040;
 
+
 export const Button = styled.button`
   background-color: #3cb371;
   color: white;
@@ -58,8 +59,20 @@ export const Input = styled.input`
             outline: none;    
             border-bottom:  1px  solid  #3cb371;
         }
+       
     }
     &[type="text"]{
+        width: 99%;
+        border: none;
+        border-bottom: 1px  solid  #3cb371;
+        &:focus {
+            outline: none;    
+        }
+        &:default {
+          color: red;
+        }
+    }
+    &[type="file"]{
         width: 99%;
         border: none;
         border-bottom: 1px  solid  #3cb371;
@@ -75,7 +88,7 @@ export const Input = styled.input`
 export const Div = styled.div`
     &.modal_box {
         flex-direction: column;
-        height: 100%;
+        height: auto;
         width: 100%;
         position: relative;
         flex-direction: column;
@@ -96,7 +109,7 @@ export const Div = styled.div`
     &.modal_middle {
         flex-direction: column;
         width: 100%;
-        height: 75%;
+        height: auto;
         position: relative;
         /* overflow-y: scroll;  */
         /* overflow-x: scroll;  */
@@ -112,20 +125,23 @@ export const Div = styled.div`
     &.middle_top {
       height: auto;
       /* border: 1px solid #3cb371; */
-      height: 1000px;
       overflow-y: scroll; 
-        overflow-x: scroll; 
+      
 
         /*  스크롤 바 설정 */
-        &::-webkit-scrollbar {
+        /* &::-webkit-scrollbar {
         width: 10px;  
         height: 20px; 
         border: 1px solid black;
-    }
+    } */
     }
     &.middle_middle {
       /* height: 10%; */
       /* border: 1px solid #3cb371; */
+    }
+    &.search{
+      font-size: 0.85em;
+      padding-top: 5px;
     }
    
     &.middle_bottom {
@@ -136,8 +152,7 @@ export const Div = styled.div`
       width: 100%;
     }
     &.modal_bottom {
-        position: absolute;
-        bottom: 2%;
+        position: relative;
         width: 98%;
     }
     &.date {
@@ -147,6 +162,12 @@ export const Div = styled.div`
       z-index: 9999;
       width: 100px;
       height: 100px;
+      background-color: black;
+    }
+    &.labelList{
+
+      width: 100%;
+      height: 10px;
       background-color: black;
     }
 `;
@@ -191,6 +212,9 @@ export const StyledCalendar = styled(Calendar)`
     }
 `;
 
+export const Table = styled.table`
+
+`;
 export const Td = styled.td`
   width: 100%;
   &.num {
@@ -206,6 +230,48 @@ export const Td = styled.td`
 export const Tr = styled.tr`
   &:nth-child(odd) {
     background-color: #f5f5f5;
+    
   }
 `;
+
+export const Label = styled.label`
+&.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #555;
+  &:custom-file-upload:hover {
+  background-color: #f7f7f7;
+}
+}
+
+
+`;
+
+export const Textarea = styled.textarea`
+  border: 1px solid #3cb371;
+  border-radius: 2px;
+  width: 99%;
+  max-width: 99%;
+  min-width: 99%;
+  min-height: 50px;
+  &:hover{
+    border: 2px solid #3cb371;
+  }
+  &:focus {
+    border: 2px solid blue;
+  }
+`;
+export const Span = styled.span`
+  width: auto;
+  max-width: 99%;
+  min-width: 99%;
+
+ 
+`;
+
 

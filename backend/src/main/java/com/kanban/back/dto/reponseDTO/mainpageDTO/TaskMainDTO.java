@@ -1,7 +1,5 @@
 package com.kanban.back.dto.reponseDTO.mainpageDTO;
 
-import com.kanban.back.entity.Board;
-import com.kanban.back.entity.Card;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +23,5 @@ public class TaskMainDTO {
     private String t_del_p;
     private String t_del_yn;
     private Integer t_position;
-    private Board board;
-    private List<Card> cards;
+    private List<CardMainDTO> cards;
 }

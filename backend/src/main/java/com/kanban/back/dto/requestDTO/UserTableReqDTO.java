@@ -3,7 +3,6 @@ package com.kanban.back.dto.requestDTO;
 import com.kanban.back.entity.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
