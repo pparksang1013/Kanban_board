@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
-import CardDetail from "./modalList/CardDetail";
+import CardDetail from "../detail/CardDetail";
 import BoardHeader from "./BoardHeader";
 import axios from "axios";
 import styled from "styled-components";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
-import dummyData from "../data/dummy_data.json";
+import dummyData from "../../data/dummy_data.json";
 
 function Board() {
     const [boardList, setBoardList] = useState(dummyData);

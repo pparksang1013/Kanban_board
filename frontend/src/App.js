@@ -4,7 +4,7 @@ import styled from "styled-components";
 // COMPONENT
 import DashboardRouter from "./router/DashboardRouter";
 import CalendarRouter from "./router/CalendarRouter";
-import Board from "./pages/Board";
+import Board from "./pages/kanbanBoard/Board";
 import HeaderComponents from "./components/HeaderComponents";
 
 const Wrapper = styled.div`
