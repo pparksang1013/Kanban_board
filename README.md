@@ -80,3 +80,5 @@
 ### Empty commit message
 
 `git commit --allow-empty -m "{커밋메시지}"`
+
+test
