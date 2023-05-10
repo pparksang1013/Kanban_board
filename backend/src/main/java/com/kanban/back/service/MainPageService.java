@@ -43,6 +43,7 @@ public class MainPageService {
     }
     @Transactional
     public BoardMainDTO getBoard(Integer b_id){
+        System.out.println(b_id);
         Board board = boardRepository.getById(b_id);
         BoardMainDTO boardMainDTO = board.toMainDTO();
 

@@ -19,6 +19,7 @@ public class MainPageController {
     }
     @GetMapping("board/{b_id}")
     public BoardMainDTO getBoard(@PathVariable Integer b_id){
+        System.out.println(b_id);
         return mainPageService.getBoard(b_id);
     }
     @PutMapping("board")

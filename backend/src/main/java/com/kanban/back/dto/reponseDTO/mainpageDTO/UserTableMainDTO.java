@@ -1,6 +1,6 @@
 package com.kanban.back.dto.reponseDTO.mainpageDTO;
 
-
+import com.kanban.back.entity.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
