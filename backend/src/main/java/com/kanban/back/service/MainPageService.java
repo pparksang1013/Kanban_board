@@ -1,18 +1,16 @@
 package com.kanban.back.service;
 
-import com.kanban.back.controller.MainPageController;
 import com.kanban.back.dto.reponseDTO.mainpageDTO.BoardMainDTO;
+import com.kanban.back.dto.reponseDTO.mainpageDTO.BoardUserMainDTO;
+import com.kanban.back.dto.reponseDTO.mainpageDTO.TaskMainDTO;
+import com.kanban.back.dto.reponseDTO.mainpageDTO.UserTableMainDTO;
 import com.kanban.back.dto.requestDTO.BoardReqDTO;
 import com.kanban.back.dto.requestDTO.CardReqDTO;
 import com.kanban.back.dto.requestDTO.TaskReqDTO;
-import com.kanban.back.entity.Board;
-import com.kanban.back.entity.Card;
-import com.kanban.back.entity.Task;
+import com.kanban.back.entity.*;
 import com.kanban.back.repository.BoardRepository;
 import com.kanban.back.repository.CardRepository;
 import com.kanban.back.repository.TaskRepository;
-import com.kanban.back.repository.UserTableRepository;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,34 +31,64 @@ public class MainPageService {
         this.taskRepository = taskRepository;
         this.cardRepository = cardRepository;
     }
+
     @Transactional
-    public BoardMainDTO getBoard(String u_id){
-        Board board = boardRepository.get_id_procedure(u_id);
-        return board.toMainDTO();
-    }
-    @Transactional
-    public void saveBoard(BoardReqDTO boardReqDTO){
+    public void createBoard(BoardReqDTO boardReqDTO){
         Board board = boardReqDTO.toEntity();
         boardRepository.save(board);
         // 나중에 여기에 조건문을 걸어서 repository가 연결 되었는지 확인
         defaultTask(board);
     }
     @Transactional
+    public BoardMainDTO getBoard(String u_id){
+        Board board = boardRepository.get_id_procedure(u_id);
+        BoardMainDTO boardMainDTO = board.toMainDTO();
+
+        // board에 속해있는 user정보 추가하는 코드
+        List<UserTableMainDTO> userTables = new ArrayList<>();
+            for (BoardUserMainDTO boardUserMainDTO : boardMainDTO.getBoardUsers()) {
+                userTables.add(boardUserMainDTO.getUserTable().toMainDTO());
+            }
+            boardMainDTO.setUserTables(userTables);
+        return boardMainDTO;
+    }
+
+    @Transactional
     public void updateBoard(BoardReqDTO boardReqDTO){
         Board board = boardRepository.getById(boardReqDTO.getB_id());
         board.update(boardReqDTO);
     }
 
+    public void deleteBoard(Integer b_id){
+        boardRepository.deleteById(b_id);
+    }
+
+    public void createTask(TaskReqDTO taskReqDTO){
+        taskRepository.save(taskReqDTO.toEntity());
+    }
     @Transactional
     public void updateTask(TaskReqDTO taskReqDTO){
         Task task = taskRepository.getById(taskReqDTO.getT_id());
         task.update(taskReqDTO);
     }
 
+    public void deleteTask(Integer t_id){
+        taskRepository.deleteById(t_id);
+    }
+
+    public void createCard(CardReqDTO cardReqDTO){
+        Card card = cardReqDTO.toEntity();
+        cardRepository.save(card);
+    }
+
     @Transactional
     public void updateCard(CardReqDTO cardReqDTO){
         Card card = cardRepository.getById(cardReqDTO.getC_id());
         card.update(cardReqDTO);
+    }
+
+    public void deleteCard(Integer c_id){
+        cardRepository.deleteById(c_id);
     }
 
     // 초기 task4개 만들기

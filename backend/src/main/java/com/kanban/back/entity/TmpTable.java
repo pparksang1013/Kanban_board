@@ -1,7 +1,7 @@
 package com.kanban.back.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kanban.back.dto.reponseDTO.mainpageDTO.*;
+import com.kanban.back.dto.reponseDTO.mainpageDTO.TmpTableMainDTO;
 import com.kanban.back.dto.requestDTO.TmpTableReqDTO;
 import jakarta.persistence.*;
 import lombok.*;
