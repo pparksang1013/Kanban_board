@@ -38,8 +38,8 @@ public class MainPageService {
     public void createBoard(BoardReqDTO boardReqDTO){
         Board board = boardReqDTO.toEntity();
         boardRepository.save(board);
-        // 나중에 여기에 조건문을 걸어서 repository가 연결 되었는지 확인
         defaultTask(board);
+        etcTask(board);
     }
     @Transactional
     public BoardMainDTO getBoard(Integer b_id){
@@ -80,7 +80,7 @@ public class MainPageService {
 
     public void createCard(CardReqDTO cardReqDTO) {
         Path fileStorageLocation = Paths.get("C:/Users/upload").normalize();
-        // 파일 만드는 코드
+        // 폴더 만드는 코드
         Path newFolder = fileStorageLocation.resolve(cardReqDTO.getC_title());
         try {
             Files.createDirectory(newFolder);
@@ -117,4 +117,15 @@ public class MainPageService {
             taskRepository.save(task);
             }
         }
+    // etc Task 만드는 코드
+    public void etcTask(Board board){
+        TaskReqDTO taskReqDTO = new TaskReqDTO();
+        taskReqDTO.setT_name("etc");
+        taskReqDTO.setT_position(5);
+        taskReqDTO.setBoard(board);
+        taskReqDTO.setT_creator("admin");
+        taskReqDTO.setT_type("etc");
+        Task task = taskReqDTO.toEntity();
+        taskRepository.save(task);
+    }
 }
