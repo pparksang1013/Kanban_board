@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+import * as A from "../../style/test";
+
+// Redux
+import {useSelector} from "react-redux";
+
+// Modal Component
 import Tag from "./Tag";
 import Member from "./Member";
 import Modal from "react-modal";
-import * as A from "../../style/test";
-import axios from "axios";
 import FileForm from "./FileForm";
 import FileAdd from "./FileAdd";
 
 function CardDetail(props) {
   const cardId = props.props;
   const [isOpen, setIsOpen] = useState(false);
+
+  const serverIp = useSelector((state)=>state.SERVER_IP);
+  const admin = useSelector((state)=>state.b_admin);
+  const userId = useSelector((state)=>state.u_id);
+  let sdate = "";
+  let edate = "";
+  let ctxt = "";
 
   // CardDetail 기본값 설정
   const [cardInfo, setCardInfo] = useState({
@@ -34,18 +47,15 @@ function CardDetail(props) {
   function closeModal() {
     setIsOpen(false);
   }
-  // 날짜, 카드파트너, 태그 조회
-  // ++파일 리스트 조회
+
+  // 날짜, 카드파트너, 태그, 파일 리스트 조회
+  // 더미 파일 주석
   async function getData() {
     try {
-      const response = await axios.get("/fileList/response.json", {
-        // const response = await axios.get("http://192.168.1.180:9080/c_id/+cardId
-        params: {
-          c_id: cardId,
-        },
-      });
+      const response = await axios.get(serverIp);
+      // const response = await axios.get("/fileList/response.json");
+      // const response = await axios.get(serverIp+"/c_id/"+cardId);
       const responseData = response.data;
-      console.log(responseData);
       setCardInfo((prevState) => {
         return {
           ...prevState,
@@ -76,41 +86,55 @@ function CardDetail(props) {
     }
   }
 
-console.log("sdasdas",cardInfo.fileList);
+  // startDate 값 받아오기
   function handleStartValueChange(event) {
+    sdate = cardInfo.startDate;
     setCardInfo({ ...cardInfo, startDate: event.target.value });
   }
-  // endDay 값 받아오기
+  // endDate 값 받아오기
   function handleEndValueChange(event) {
+    edate = cardInfo.endDate;
     setCardInfo({ ...cardInfo, endDate: event.target.value });
   }
-
+  // textArea 값 받아오기
+  function handleChange(e){
+    ctxt= e.target.value;  
+  }
   // 저장 버튼 동작
-  function saveMotion() {
-    // axios put 요청
-    axios
-      .put("", {
-        /* 
-    insert into 
-    */
-        params: {},
-      })
-      .then(function (response) {})
-      .catch(function (error) {});
+  async function saveCard() {
+  
+    
+      try {
+        await axios.post(serverIp, {
+          u_id: userId,
+          c_start_date: cardInfo.startDate,
+          c_end_date: cardInfo.endDate,
+          c_: cardInfo.endDate,
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+    
   }
   // 삭제 버튼 동작
-  function deleteMotion() {
-    // axios delete 요청
-    axios
-      .delete("", {
-        /* 
-  insert into 
-  */
-        params: {},
-      })
-      .then(function (response) {})
-      .catch(function (error) {});
+  async function deleteCard() {
+    try{
+      await axios.post(serverIp+"/"+cardId);
+    } catch(error){
+      console.log(error.message);
+    }
+    closeModal();
   }
+  // 요청 버튼 동작
+  async function changeTask(){
+    try{
+      await axios.post(serverIp+"/"+cardId);
+    } catch(error){
+      console.log(error.message);
+    }
+
+  }
+
 
   return (
     <div>
@@ -133,28 +157,16 @@ console.log("sdasdas",cardInfo.fileList);
         <A.Div className="modal_box">
           {/* 모달 TOP 시작 */}
           <A.Div className="modal_top">
-            <A.Button onClick={closeModal} className="btn_close">
-              {" "}
-              X{" "}
-            </A.Button>
+            <A.Button onClick={closeModal} className="btn_close">X</A.Button>
             <A.Modal_Title>CardDetail2</A.Modal_Title>
             <A.Div className="top2">
               <A.Div className="top2-middle">
                 <Member props={cardInfo.memberList} />
                 <A.Div className="search">{cardInfo.memberList}</A.Div>
               </A.Div>
-              {/* <Label /> */}
               <A.Div className="top2-middle">
-                <A.Input
-                  type="date"
-                  value={cardInfo.startDate}
-                  onChange={handleStartValueChange}
-                />
-                <A.Input
-                  type="date"
-                  value={cardInfo.endDate}
-                  onChange={handleEndValueChange}
-                />
+                <A.Input type="date" value={cardInfo.startDate} onChange={handleStartValueChange}/>
+                <A.Input  type="date"  value={cardInfo.endDate}  onChange={handleEndValueChange}/>
               </A.Div>
               <A.Div className="top2-middle">
                 <Tag props={cardInfo.tagList}/>
@@ -163,6 +175,7 @@ console.log("sdasdas",cardInfo.fileList);
             </A.Div>
           </A.Div>
           {/* 모달 TOP 끝 */}
+
           {/* 모달 Middle 시작*/}
           <A.Div className="modal_middle">
             <A.Div className="middle_top">
@@ -179,7 +192,7 @@ console.log("sdasdas",cardInfo.fileList);
             </A.Div>
             <A.Div className="middle_middle">
               <A.Modal_Title>Description</A.Modal_Title>
-              <A.Textarea defaultValue={cardInfo.cardDescription}></A.Textarea>
+              <A.Textarea defaultValue={cardInfo.cardDescription} onInput={handleChange}></A.Textarea>
             </A.Div>
             <A.Div className="middle_bottom">
             </A.Div>
@@ -188,8 +201,9 @@ console.log("sdasdas",cardInfo.fileList);
         {/* 모달 Middle 끝 */}
         {/* 모달 Bottom 시작*/}
         <A.Div className="modal_bottom">
-          <A.Input type="button" onClick={saveMotion} value="저장"></A.Input>
-          <A.Input type="button" onClick={deleteMotion} value="삭제"></A.Input>
+          <A.Input type="button" onClick={saveCard} value="저장"></A.Input>
+          {!admin&&<A.Input type="button" onClick={deleteCard} value="요청"></A.Input>}
+          {!admin&&<A.Input type="button" onClick={changeTask} value="삭제"></A.Input>}
         </A.Div>
         {/* 모달 Bottom 끝 */}
       </Modal>
