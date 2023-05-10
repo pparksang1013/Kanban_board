@@ -11,22 +11,16 @@ function DonutChart() {
 
         chart: {
             type: "donut",
-            width: "500px",
+            width: "420px",
             fontFamily: "Pretendard",
-            foreColor: "#3a7e9f",
-
+            foreColor: "#000",
             toolbar: {
                 show: false,
             },
         },
 
-        // 바 컬러 변경
-        // fill: {
-        //     colors: [],
-        // },
-
         title: {
-            text: "업무량",
+            text: "TO DO",
             style: {
                 fontFamily: "Pretendard",
                 fontSize: "20px",
@@ -40,9 +34,9 @@ function DonutChart() {
         plotOptions: {
             pie: {
                 customScale: 1,
-                size: 100,
+                size: 200,
                 donut: {
-                    size: "60%",
+                    size: "40%",
                     labels: {
                         show: true,
                     },

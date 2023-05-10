@@ -22,6 +22,7 @@ function BarChart() {
         yaxis: {
             max: 100,
             style: {
+                // colors: [],
                 fontSize: "30rem",
                 fontWeight: 400,
             },
