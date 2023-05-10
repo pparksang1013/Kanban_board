@@ -1,22 +1,22 @@
 package com.kanban.back.service;
 
-import com.kanban.back.controller.MainPageController;
+import com.kanban.back.Exception.FileStorageException;
 import com.kanban.back.dto.reponseDTO.mainpageDTO.BoardMainDTO;
+import com.kanban.back.dto.reponseDTO.mainpageDTO.UserTableMainDTO;
 import com.kanban.back.dto.requestDTO.BoardReqDTO;
 import com.kanban.back.dto.requestDTO.CardReqDTO;
 import com.kanban.back.dto.requestDTO.TaskReqDTO;
-import com.kanban.back.entity.Board;
-import com.kanban.back.entity.Card;
-import com.kanban.back.entity.Task;
+import com.kanban.back.entity.*;
 import com.kanban.back.repository.BoardRepository;
 import com.kanban.back.repository.CardRepository;
 import com.kanban.back.repository.TaskRepository;
-import com.kanban.back.repository.UserTableRepository;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,34 +33,72 @@ public class MainPageService {
         this.taskRepository = taskRepository;
         this.cardRepository = cardRepository;
     }
+
     @Transactional
-    public BoardMainDTO getBoard(String u_id){
-        Board board = boardRepository.get_id_procedure(u_id);
-        return board.toMainDTO();
-    }
-    @Transactional
-    public void saveBoard(BoardReqDTO boardReqDTO){
+    public void createBoard(BoardReqDTO boardReqDTO){
         Board board = boardReqDTO.toEntity();
         boardRepository.save(board);
-        // 나중에 여기에 조건문을 걸어서 repository가 연결 되었는지 확인
         defaultTask(board);
+        etcTask(board);
     }
+    @Transactional
+    public BoardMainDTO getBoard(Integer b_id){
+        System.out.println(b_id);
+        Board board = boardRepository.getById(b_id);
+        BoardMainDTO boardMainDTO = board.toMainDTO();
+
+//        // board에 속해있는 user정보 추가하는 코드
+        List<UserTableMainDTO> userTables = new ArrayList<>();
+            for (BoardUser boardUser : board.getBoardUsers()) {
+                userTables.add(boardUser.getUserTable().toMainDTO());
+            }
+            boardMainDTO.setUserTables(userTables);
+        return boardMainDTO;
+    }
+
     @Transactional
     public void updateBoard(BoardReqDTO boardReqDTO){
         Board board = boardRepository.getById(boardReqDTO.getB_id());
         board.update(boardReqDTO);
     }
 
+    public void deleteBoard(Integer b_id){
+        boardRepository.deleteById(b_id);
+    }
+
+    public void createTask(TaskReqDTO taskReqDTO){
+        taskRepository.save(taskReqDTO.toEntity());
+    }
     @Transactional
     public void updateTask(TaskReqDTO taskReqDTO){
         Task task = taskRepository.getById(taskReqDTO.getT_id());
         task.update(taskReqDTO);
     }
 
+    public void deleteTask(Integer t_id){
+        taskRepository.deleteById(t_id);
+    }
+
+    public void createCard(CardReqDTO cardReqDTO) {
+        Path fileStorageLocation = Paths.get("C:/Users/upload").normalize();
+        // 폴더 만드는 코드
+        Path newFolder = fileStorageLocation.resolve(cardReqDTO.getC_title());
+        try {
+            Files.createDirectory(newFolder);
+        } catch (Exception ex) {
+            throw new FileStorageException("폴더를 생성할 수 없습니다.", ex);
+        }
+        Card card = cardReqDTO.toEntity();
+        cardRepository.save(card);
+    }
     @Transactional
     public void updateCard(CardReqDTO cardReqDTO){
         Card card = cardRepository.getById(cardReqDTO.getC_id());
         card.update(cardReqDTO);
+    }
+
+    public void deleteCard(Integer c_id){
+        cardRepository.deleteById(c_id);
     }
 
     // 초기 task4개 만들기
@@ -80,4 +118,15 @@ public class MainPageService {
             taskRepository.save(task);
             }
         }
+    // etc Task 만드는 코드
+    public void etcTask(Board board){
+        TaskReqDTO taskReqDTO = new TaskReqDTO();
+        taskReqDTO.setT_name("etc");
+        taskReqDTO.setT_position(5);
+        taskReqDTO.setBoard(board);
+        taskReqDTO.setT_creator("admin");
+        taskReqDTO.setT_type("etc");
+        Task task = taskReqDTO.toEntity();
+        taskRepository.save(task);
+    }
 }

@@ -1,7 +1,7 @@
 package com.kanban.back.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kanban.back.dto.reponseDTO.mainpageDTO.*;
+import com.kanban.back.dto.reponseDTO.mainpageDTO.TmpTableMainDTO;
 import com.kanban.back.dto.requestDTO.TmpTableReqDTO;
 import jakarta.persistence.*;
 import lombok.*;
@@ -30,8 +30,7 @@ public class TmpTable {
 
     public TmpTableMainDTO toMainDTO(){
         return TmpTableMainDTO.builder()
-                .card(card)
-                .userTable(userTable)
+                .userTable(userTable.toMainDTO())
                 .commit_status(commit_status)
                 .tmp_id(tmp_id)
                 .build();
