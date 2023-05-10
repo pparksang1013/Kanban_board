@@ -4,7 +4,6 @@ import com.kanban.back.entity.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -16,8 +15,4 @@ public class UserTableMainDTO {
     private String u_name;
     private String u_email;
     private String u_id;
-    private List<CardPartner> cardPartners;
-    private List<Comment> comments;
-    private List<TmpTable> tmpTables;
-    private List<BoardUser> boardUsers;
 }

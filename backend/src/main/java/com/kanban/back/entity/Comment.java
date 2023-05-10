@@ -1,7 +1,8 @@
 package com.kanban.back.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kanban.back.dto.reponseDTO.mainpageDTO.*;
+import com.kanban.back.dto.reponseDTO.detailpageDTO.CommentDetailDTO;
+import com.kanban.back.dto.reponseDTO.mainpageDTO.CommentMainDTO;
 import com.kanban.back.dto.requestDTO.CommentReqDTO;
 import jakarta.persistence.*;
 import lombok.*;
@@ -35,10 +36,14 @@ public class Comment {
     @LastModifiedDate
     private LocalDateTime comment_date;
     private String comment_contents;
+
+    @PrePersist
+    public void prePersist() {
+        this.del_yn = this.del_yn == null ? "no" : this.del_yn;
+    }
     public CommentMainDTO toMainDTO(){
         return CommentMainDTO.builder()
-                .card(card)
-                .userTable(userTable)
+                .userTable(userTable.toMainDTO())
                 .del_yn(del_yn)
                 .comment_id(comment_id)
                 .comment_date(comment_date)
@@ -46,6 +51,14 @@ public class Comment {
                 .build();
     }
 
+    public CommentDetailDTO toDetailDTO(){
+        return CommentDetailDTO.builder()
+                .userTable(userTable.toDetailDTO())
+                .comment_id(comment_id)
+                .comment_date(comment_date)
+                .comment_contents(comment_contents)
+                .build();
+    }
     public void update(CommentReqDTO commentReqDTO){
         if(commentReqDTO.getDel_yn() != null) this.del_yn = commentReqDTO.getDel_yn();
         if(commentReqDTO.getComment_contents() != null) this.comment_contents = commentReqDTO.getComment_contents();

@@ -1,55 +1,53 @@
 package com.kanban.back.controller;
 
-import com.kanban.back.BackApplication;
 import com.kanban.back.dto.reponseDTO.mainpageDTO.BoardMainDTO;
-import com.kanban.back.dto.reponseDTO.mainpageDTO.CardMainDTO;
 import com.kanban.back.dto.requestDTO.BoardReqDTO;
 import com.kanban.back.dto.requestDTO.CardReqDTO;
 import com.kanban.back.dto.requestDTO.TaskReqDTO;
-import com.kanban.back.entity.BoardUser;
-import com.kanban.back.entity.Card;
 import com.kanban.back.service.MainPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class MainPageController {
     MainPageService mainPageService;
     @Autowired
     MainPageController(MainPageService mainPageService){ this.mainPageService = mainPageService;}
-
-    @GetMapping("board/{u_id}")
-    public BoardMainDTO getBoard(@PathVariable String u_id){
-
-        BoardMainDTO boardMainDTO =  mainPageService.getBoard(u_id);
-        List<String> joinUsers = new ArrayList<>();
-
-        for(BoardUser boardUser :boardMainDTO.getBoardUsers()){
-            joinUsers.add(boardUser.getUserTable().getU_id());
-        }
-
-        boardMainDTO.setJoinUsers(joinUsers);
-        return boardMainDTO;
+    @PostMapping("board")
+    public void createBoard(@RequestBody BoardReqDTO boardReqDTO){
+        mainPageService.createBoard(boardReqDTO);
     }
-
+    @GetMapping("board/{b_id}")
+    public BoardMainDTO getBoard(@PathVariable Integer b_id){
+        System.out.println(b_id);
+        return mainPageService.getBoard(b_id);
+    }
     @PutMapping("board")
     public void updateBoard(@RequestBody BoardReqDTO boardReqDTO){
         mainPageService.updateBoard(boardReqDTO);
     }
-
-    @PostMapping("board")
-    public void saveBoard(@RequestBody BoardReqDTO boardReqDTO){
-        mainPageService.saveBoard(boardReqDTO);
-    }
-
+    @DeleteMapping("board/{b_id}")
+    public void deleteBoard(@PathVariable Integer b_id) { mainPageService.deleteBoard(b_id); }
     @PostMapping("task")
-    public void updateTask(@RequestBody TaskReqDTO taskReqDTO){
-        mainPageService.updateTask(taskReqDTO);}
-
+    public void createTask(@RequestBody TaskReqDTO taskReqDTO){
+        mainPageService.createTask(taskReqDTO);
+    }
+    @PutMapping("task")
+    public void updateTask(@RequestBody TaskReqDTO taskReqDTO){mainPageService.updateTask(taskReqDTO);}
+    @DeleteMapping("task/{t_id}")
+    public void deleteTask(@PathVariable Integer t_id){
+        mainPageService.deleteTask(t_id);
+    }
     @PostMapping("card")
+    public void createCard(@RequestBody CardReqDTO cardReqDTO){
+        mainPageService.createCard(cardReqDTO);
+    }
+    @PutMapping("card")
     public void updateCard(@RequestBody CardReqDTO cardReqDTO){
         mainPageService.updateCard(cardReqDTO);
+    }
+    @DeleteMapping("card/{c_id}")
+    public void deleteCard(@PathVariable Integer c_id){
+        mainPageService.deleteCard(c_id);
     }
 }

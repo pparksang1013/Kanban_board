@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -21,6 +23,9 @@ public class CardReqDTO {
     private String c_del_p;
     private String c_description;
     private String c_del_yn;
+    private Date c_start_date;
+    private Date c_end_date;
+
     public Card toEntity(){
         return Card.builder()
                 .c_title(c_title)
