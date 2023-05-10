@@ -34,8 +34,4 @@ public class TaskReqDTO {
                 .board(board)
                 .build();
     }
-
-
-
-
 }
