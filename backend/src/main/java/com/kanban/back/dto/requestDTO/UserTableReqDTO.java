@@ -13,12 +13,14 @@ import java.time.LocalDateTime;
 public class UserTableReqDTO {
     private String u_name;
     private String u_email;
+    private String u_password;
     private String u_id;
 
     public UserTable toEntity(){
         return UserTable.builder()
                 .u_name(u_name)
                 .u_email(u_email)
+                .u_password(u_password)
                 .u_id(u_id)
                 .build();
     }

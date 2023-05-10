@@ -1,12 +1,9 @@
 package com.kanban.back.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kanban.back.dto.reponseDTO.mainpageDTO.BoardMainDTO;
 import com.kanban.back.dto.requestDTO.BoardReqDTO;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -35,15 +32,22 @@ public class Board {
     private String b_creator;
     private String b_del_yn;
     private String b_admin;
-    @Fetch(FetchMode.SUBSELECT)
+
+
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE) // cascade = CascadeType.REMOVE
-    @JsonIgnore
     private List<Task> tasks;
+
+
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     private List<CardPartner> cardPartners;
+
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     private List<BoardUser> boardUsers;
 
+    @PrePersist
+    public void prePersist() {
+        this.b_del_yn = this.b_del_yn == null ? "no" : this.b_del_yn;
+    }
 
     public BoardMainDTO toMainDTO(){
         return BoardMainDTO.builder()
@@ -55,9 +59,9 @@ public class Board {
                 .b_creator(b_creator)
                 .b_del_yn(b_del_yn)
                 .b_admin(b_admin)
-                .tasks(tasks)
-                .cardPartners(cardPartners)
-                .boardUsers(boardUsers)
+                .tasks(tasks.stream().map(s->s.toMainDTO()).toList())
+                .cardPartners(cardPartners.stream().map(s-> s.toMainDTO()).toList())
+                .boardUsers(boardUsers.stream().map(s-> s.toMainDTO()).toList())
                 .build();
     }
 
