@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import icons from "../style/icons/icons";
+import icons from "../../style/icons/icons";
 
 const NavBox = styled.nav`
     margin-top: 2rem;

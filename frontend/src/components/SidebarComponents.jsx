@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 // COMPONENT
-import NavPage from "../pages/NavPage";
+import SidebarPage from "../pages/sidebar/SidebarPage";
 
 import icons from "../style/icons/icons";
 
@@ -41,7 +41,7 @@ const FoldIcon = styled.div`
     }
 `;
 
-function HeaderComponents() {
+function SidebarComponents() {
     const [fold, setFold] = useState(false);
 
     const handleFoldEvent = () => {
@@ -56,9 +56,9 @@ function HeaderComponents() {
             <Link to="/" className="logo_link">
                 <p className="logo">LOGO</p>
             </Link>
-            <NavPage fold={fold} />
+            <SidebarPage fold={fold} />
         </HeaderBox>
     );
 }
 
-export default HeaderComponents;
+export default SidebarComponents;

@@ -4,8 +4,8 @@ import styled from "styled-components";
 // COMPONENT
 import DashboardRouter from "./router/DashboardRouter";
 import CalendarRouter from "./router/CalendarRouter";
-import Board from "./pages/kanbanBoard/Board";
-import HeaderComponents from "./components/HeaderComponents";
+import MainRouter from "./router/MainRouter";
+import SidebarComponents from "./components/SidebarComponents";
 
 const Wrapper = styled.div`
     display: flex;
@@ -15,9 +15,9 @@ function App() {
     return (
         <div className="App">
             <Wrapper>
-                <HeaderComponents />
+                <SidebarComponents />
                 <Routes>
-                    <Route path="/" element={<Board />} />
+                    <Route path="/" element={<MainRouter />} />
                     <Route path="/calendar" element={<CalendarRouter />} />
                     <Route path="/dashboard" element={<DashboardRouter />} />
                 </Routes>
