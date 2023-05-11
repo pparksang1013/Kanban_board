@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const initialState = {
     b_id: 0,
     u_id: 0,
-    SERVER_IP : "",
+    SERVER_IP : "http://localhost:9080",
     admin: false
 };
 
