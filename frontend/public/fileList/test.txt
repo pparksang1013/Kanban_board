@@ -13,6 +13,144 @@ function CardDetail() {
   const [isOpen, setIsOpen] = useState(false);
   var t1;
 
+  const openModal = () => {
+    setIsOpen(true);
+  };
+  // 모달창 Close
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+  // comment 입력시 감지
+  const handleInput = (e) => {
+    setInputValue(e.target.value);
+  };
+  // 파일 읽어오기 test (txt)
+  const [text, setText] = useState("");
+
+  // commemt text 입력시 등록 버튼 표시
+  useEffect(() => {
+    if (inputValue !== "") {
+      setShowButton(true);
+    } else {
+      setShowButton(false);
+    }
+  }, [inputValue]);
+
+  useEffect(() => {
+    // axios.get('../fileList/test.txt')
+    axios
+      .get("/fileList/test.txt")
+      .then(function (response) {
+        const lines = response.data.split("\n");
+        setText(lines);
+        // console.log("타입",typeof(lines));
+        // console.log(lines[0]);
+        // console.log(lines); // 각 줄을 배열로 출력
+        // console.log("text 값",text.key);
+      })
+      .catch(function (error) {
+        console.log(error.message);
+      });
+  }, []);
+  // function test1(){for( t1 in text){
+  //   console.log(parseInt(t1)+1);
+  //   console.log(text[t1]);
+  //   return  <A.Td className="num">(parseInt(t1)+1), text[t1] </A.Td>
+  // }}
+
+  return (
+    <div>
+      <A.Button onClick={openModal}>카드 상세</A.Button>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={closeModal}
+        ariaHideApp={false}
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          },
+          content: {
+            width: "90%",
+            height: "90%",
+            margin: "auto",
+          },
+        }}
+      >
+        <A.Div className="modal_box">
+          <A.Div className="modal_top">
+            <A.Div className="top1">
+              <A.Button onClick={closeModal} className="btn_close">
+                {" "}
+                X{" "}
+              </A.Button>
+              <A.Modal_Title>CardDetail</A.Modal_Title>
+            </A.Div>
+            <A.Div className="top2">
+              <A.Div className="top2-middle">
+                <Member />
+              </A.Div>
+              {/* <Label /> */}
+              <A.Div className="top2-middle">
+                {/* 아이콘 쓸지말지 고민을 해볼까? */}
+                {/* <VscCalendar/> */}
+                <Calendar />
+              </A.Div>
+              <A.Div className="top2-middle">
+                <Label />
+              </A.Div>
+            </A.Div>
+          </A.Div>
+          <A.Div className="modal_middle">
+            <A.Div className="middle_top">
+              <table>
+                <tbody>
+                  {Object.keys(text).map((key, index) => (
+                    <A.Tr key={index}>
+                      <A.Td className="num">{index + 1}</A.Td>
+                      <A.Td> {text[key]}</A.Td>
+                    </A.Tr>
+                  ))}
+                </tbody>
+              </table>
+            </A.Div>
+            <A.Div className="middle_middle"></A.Div>
+            <A.Div className="middle_bottom">
+              <A.Input
+                className="input_comment"
+                type="text"
+                onInput={handleInput}
+                placeholder=" Add Comment.."
+              />
+              {showButton && <A.Input type="button" value="등록"></A.Input>}
+            </A.Div>
+          </A.Div>
+        </A.Div>
+        <A.Div className="modal_bottom">
+          <A.Input type="button" value="저장"></A.Input>
+          <A.Input type="button" value="삭제"></A.Input>
+        </A.Div>
+      </Modal>
+    </div>
+  );
+}
+
+export default CardDetail;
+
+import React, { useEffect, useState } from "react";
+import Calendar from "./Calendar";
+import Label from "./Label";
+import Member from "./Member";
+import Modal from "react-modal";
+import * as A from "../style/test";
+import { VscCalendar } from "react-icons/vsc";
+import axios from "axios";
+
+function CardDetail() {
+  const [inputValue, setInputValue] = useState("");
+  const [showButton, setShowButton] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  var t1;
+
   // 모달창 Open
   const openModal = () => {
     setIsOpen(true);
@@ -136,3 +274,56 @@ function CardDetail() {
 }
 
 export default CardDetail;
+
+pre[class*="language-"].line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+	position: relative;
+	white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0em;
+	/* font-size: .9em; */
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 1px solid #999;
+	line-height: 1.2em;
+	
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+	.line-numbers-rows > span {
+		display: block;
+		counter-increment: linenumber;
+		line-height: 1.43em;
+		font-size: 0.9em;
+		vertical-align: text-bottom;
+		
+	}
+
+		.line-numbers-rows > span:before {
+			content: counter(linenumber);
+			color: #999;
+			display: block;
+			padding-right: 0.8em;
+			text-align: right;
+		}
+		.line-numbers-rows > span:nth-child(even):before {
+			background-color: gray;
+		  }
+
+		
+

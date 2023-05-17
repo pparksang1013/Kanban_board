@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+
 
 // -   Main color: #3cb371;
 // -   Main color rgba : (60, 179, 113);
@@ -25,9 +24,10 @@ export const Button = styled.button`
     float: right;
     background-color: white;
   }
-  &.plus{
+  &.delBtn{
+    background: none;
     color: #3cb371;
-    background-color: white;
+    font-size: 2px;
   }
 `;
 
@@ -50,7 +50,7 @@ export const Input = styled.input`
         }
     }
     &[type="date"]{
-        float: right;
+        /* float: right; */
         border: none;
         // border-bottom:  1px  solid  #3cb371;
         text-align: center;
@@ -86,47 +86,48 @@ export const Input = styled.input`
 `;
 
 export const Div = styled.div`
+  &::-webkit-scrollbar {
+      display:none;
+    }    
+
+
     &.modal_box {
         flex-direction: column;
         height: auto;
         width: 100%;
+        height: 100%;
         position: relative;
         flex-direction: column;
+    
+  
+    }
+
+
+    &.right{
+      display: flex;
+      flex-direction: column;
     }
     &.modal_top {
         flex-direction: column;
+        /* padding: 0 0 20px 0; */
+        width: 100%;
+        /* display: flex; */
+        /* display: inline-block; */
+        justify-content: space-between;
+
+        h1 {
+          font-size: 2rem;
+        }
     }
-    &top1 {
-        display: flex;
-    }
-    &top2 {
-        flex-direction: column;
-        border: 10px;
-    }
-    &.top2-middle {
-        display: flex;
-    }
+
+
     &.modal_middle {
         flex-direction: column;
         width: 100%;
-        height: auto;
+        /* height: auto; */
         position: relative;
         /* overflow-y: scroll;  */
         /* overflow-x: scroll;  */
-
-        /*  스크롤 바 설정 */
-        &::-webkit-scrollbar {
-        width: 10px;  
-        height: 20px; 
-        border: 1px solid black;
-    }
-
-    } 
-    &.middle_top {
-      height: auto;
-      /* border: 1px solid #3cb371; */
-      overflow-y: scroll; 
-      
 
         /*  스크롤 바 설정 */
         /* &::-webkit-scrollbar {
@@ -134,84 +135,140 @@ export const Div = styled.div`
         height: 20px; 
         border: 1px solid black;
     } */
-    }
-    &.middle_middle {
-      /* height: 10%; */
-      /* border: 1px solid #3cb371; */
-    }
-    &.search{
-      font-size: 0.85em;
-      padding-top: 5px;
-    }
-   
-    &.middle_bottom {
-      /* position: absolute; */
-      /* bottom:1%; */
-      min-height: 20px;
-      bottom:0%;
-      width: 100%;
-    }
+
+    } 
+
     &.modal_bottom {
         position: relative;
-        width: 98%;
+        width: 100%;
+        margin: 3px;
     }
-    &.date {
-        padding-top: 1%;
-    }
-    &.commentWindow{
-      z-index: 9999;
-      width: 100px;
-      height: 100px;
-      background-color: black;
-    }
+
     &.labelList{
-
-      width: 100%;
-      height: 10px;
-      background-color: black;
-    }
-`;
-
-export const StyledCalendar = styled(Calendar)`
-
-    width: 350px;
-    max-width: 100%;
-    background: white;
-    border: none !important;
-    line-height: 1.125em;
-    color: #3cb371;
-
-    // 주말 색상
-    .react-calendar__month-view__days__day--weekend {
-      color: black;
-    }
-    // 이웃달 날 색상
-    .react-calendar__month-view__days__day--neighboringMonth {
-      color: #CFCFCF;
-    }
-    // 오늘 색상
-    .react-calendar__tile--now {
-      background: #3cb371;
-      color: white;
-    }
-    // 선택한 날 색상
-    .react-calendar__tile:enabled:hover,
-    .react-calendar__tile:enabled:focus {
-      background-color: #3cb371;
-      color: white;
-    }
-    .react-calendar__navigation {
+      width: auto;
       display: flex;
-      height: 44px;
-      margin-bottom: 1em;
+      flex-direction: row;
+      /* height: 10px; */
+      /* background-color: black; */
     }
-    // 달력 tile
-    .react-calendar__navigation button {
-      min-width: 44px;
-      background: none;
-    }
-`;
 
+    &.tagbuttons{
+      color: white;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 40px;
+      min-height: 40px;
+      background-color: #FBAD54;
+    }
+    &.memberbuttons{
+      color: white;
+      text-align: center;
+      width: 100px;
+      height: 40px;
+      min-height: 40px;
+      background-color: #3cb371;
+      display:flex;
+      justify-content: center;
+      align-items:center;
+    }
+    .filebuttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100px;
+    height: 40px;
+    min-height: 40px;
+    background-color: #FB7754;
+    color: white;
+    }
+    .classDes {
+      display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100px;
+    height: 40px;
+    min-height: 40px;
+    padding-left: 4px;
+
+    background-color: #3a7e9f;
+    color: white;
+    }
+    &.mplus{
+    border:  1.5px solid #3cb371;
+    color: black;
+    border-radius: 4px;
+    height: 100%;
+  }
+  &.tplus{
+    border:  1.5px solid #FBAD54;
+    color: black;
+    border-radius: 4px;
+    height: 100%;
+  }
+&.plus{
+    /* min-height: 30px; */
+    height: 100%;
+    color: white;
+    width: 100%;
+    text-align: left;
+    background-color: white;
+    padding: 0;
+    margin: 3px;
+    font-size:15px;
+  }
+    &.fileListTable{
+      display: flex;
+      width: 100%;
+      min-height: 30px;
+      border: 1.5px solid #FB7754;
+      border-radius: 4px;
+      margin: 3px;
+      height: 100%;
+      color: white;
+      width: 100%;
+      text-align: left;
+      background-color: white;
+      padding: 0;
+      margin: 3px;
+
+    }
+    &.des{
+      /* display: flex; */
+      width: 100%;
+      border: 1.5px solid #3a7e9f;
+      border-radius: 4px;
+      margin: 3px;
+    }
+    &.cardWrap{
+      /* flex-direction: column ; */
+      display: flex;
+      /* height: 100%; */
+    }
+    &.cardWrap2{
+      /* flex-direction: column ; */
+      display: flex;
+      height: 100%;
+    }
+    &.cardValue{
+      background-color: white;
+      color: black;
+      padding-left: 10px;
+
+      & > div {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        
+        div {
+          margin-right: 12px;
+        }
+      }
+    }
+
+`;
 export const Table = styled.table`
 
 `;
@@ -234,44 +291,57 @@ export const Tr = styled.tr`
   }
 `;
 
-export const Label = styled.label`
-&.custom-file-upload {
-  border: 1px solid #ccc;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 16px;
-  color: #555;
-  &:custom-file-upload:hover {
-  background-color: #f7f7f7;
-}
-}
-
-
-`;
-
 export const Textarea = styled.textarea`
-  border: 1px solid #3cb371;
-  border-radius: 2px;
-  width: 99%;
-  max-width: 99%;
-  min-width: 99%;
+  border: none;
+  /* border-radius: 4px; */
+  border: none;
+  outline: none;
+  margin: 2px;
+  width: 98%;
+  /* max-width: 99%; */
+  /* min-width: 99%; */
   min-height: 50px;
   &:hover{
-    border: 2px solid #3cb371;
+    border: none;
   }
   &:focus {
-    border: 2px solid blue;
+    border: none;
   }
 `;
-export const Span = styled.span`
-  width: auto;
-  max-width: 99%;
-  min-width: 99%;
 
- 
+export const Span = styled.span`
+  /* width: auto;
+  max-width: 99%;
+  min-width: 99%; */
+
+  /* width: 300px; */
+  /* min-width: 15px; */
+  /* min-height: 10px; */
+  /* -webkit-text-stroke: 0; */
+  /* margin: 12px 0 24px 0; */
+  /* padding: 12px 10px; */
+  color: black;
+  border-radius: ${({ theme }) => theme.borderRadius.basic};
+  box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.06);
+  position: relative;
+&:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+  }
 `;
 
+// const CardWrapper = styled.div`
+//     width: 300px;
+//     min-width: 300px;
+//     min-height: 120px;
+//     -webkit-text-stroke: 0;
+//     margin: 12px 0 24px 0;
+//     padding: 12px 10px;
+//     color: black;
+//     border-radius: ${({ theme }) => theme.borderRadius.basic};
+//     box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.06);
+//     position: relative;
 
+//     &:hover {
+//         background-color: rgba(0, 0, 0, 0.02);
+//     }
+// `;

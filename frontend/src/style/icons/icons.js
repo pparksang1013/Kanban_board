@@ -5,6 +5,8 @@ import {
     CiSquareChevLeft,
     CiSquareChevRight,
     CiMenuKebab,
+    CiMenuKebab,
+    CiUser,
 } from "react-icons/ci";
 
 import {

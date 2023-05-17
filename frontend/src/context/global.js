@@ -10,7 +10,7 @@ const initialState = {
     FILE_SEARCH_PATH:
         "https://port-0-java-springboot-test-1maxx2alguzrmcx.sel3.cloudtype.app/downloadfile/",
     FILE_UPLOAD_PATH:
-        "https://port-0-java-springboot-test-1maxx2alguzrmcx.sel3.cloudtype.app/uploadfile",
+        "https://port-0-java-springboot-test-1maxx2alguzrmcx.sel3.cloudtype.app/uploadmultiplefiles",
     TOKEN: "",
     admin: false,
 };

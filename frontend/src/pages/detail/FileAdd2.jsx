@@ -116,7 +116,7 @@ function FileAdd() {
 
             </div>
             <label htmlFor="file-upload" className="custom-file-upload">
-              <i className="fa fa-cloud-upload">test</i> FileAdd
+              <i className="fa fa-cloud-upload"></i> FileAdd
             </label>
             <input
               id="file-upload"
