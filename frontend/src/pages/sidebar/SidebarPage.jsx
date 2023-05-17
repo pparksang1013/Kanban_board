@@ -7,7 +7,6 @@ const NavBox = styled.nav`
 
     .nav_link {
         display: block;
-        width: 100%;
         height: 2.4rem;
         position: relative;
         margin: ${({ fold }) =>
