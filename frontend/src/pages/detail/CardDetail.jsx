@@ -15,6 +15,7 @@ import FileAdd from "./FileAdd";
 
 function CardDetail(props) {
     const cardId = props.props;
+    const { openDetailCard, setOpenDetailCard } = props;
     const [isOpen, setIsOpen] = useState(false);
 
     const serverIp = useSelector((state) => state.SERVER_IP);
@@ -39,13 +40,13 @@ function CardDetail(props) {
 
     // 모달창 Open
     function openModal() {
-        setIsOpen(true);
-
+        setOpenDetailCard(true);
         getData();
     }
+
     // 모달창 Close
     function closeModal() {
-        setIsOpen(false);
+        setOpenDetailCard(false);
     }
 
     // 날짜, 카드파트너, 태그, 파일 리스트 조회
@@ -145,9 +146,8 @@ function CardDetail(props) {
 
     return (
         <div>
-            <A.Button onClick={openModal}>카드 상세 2버전</A.Button>
             <Modal
-                isOpen={isOpen}
+                isOpen={openDetailCard}
                 onRequestClose={closeModal}
                 ariaHideApp={false}
                 style={{
@@ -203,7 +203,7 @@ function CardDetail(props) {
                             {/* 리스트 파일 목록 구현 */}
                             <FileAdd />
                             <A.Modal_Title>Code</A.Modal_Title>
-                            <ul>
+                            {/* <ul>
                                 {Object.values(cardInfo.fileList).map(
                                     (file, index) => (
                                         <li key={index}>
@@ -211,7 +211,7 @@ function CardDetail(props) {
                                         </li>
                                     )
                                 )}
-                            </ul>
+                            </ul> */}
                         </A.Div>
                         <A.Div className="middle_middle">
                             <A.Modal_Title>Description</A.Modal_Title>
