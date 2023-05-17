@@ -1,12 +1,56 @@
-/*
-캘린더 컴포넌트 
-*/
 import styled from "styled-components";
 import moment from "moment";
+import { useState, useEffect } from "react";
 
 // 컴포넌트
 import icons from "../../style/icons/icons";
 import Calendar from "react-calendar";
+import { CALENDAR_GET_DATA } from "../../api/getAxios";
+
+function CalendarPage() {
+    const [dotArr, SetDotArr] = useState([]);
+    useEffect(() => {
+        CALENDAR_GET_DATA(
+            "https://port-0-java-springboot-test-1maxx2alguzrmcx.sel3.cloudtype.app/calendar/5"
+        ).then((res) => {
+            res.data.map((item) => {
+                SetDotArr([...item.cal_date]);
+            });
+        });
+    }, []);
+    let marks = ["2023 04 01", "2023 04 10"];
+
+    const calendarDayClick = (value, event) => {};
+
+    return (
+        <>
+            <CalendarBox
+                calendarType="US"
+                className="big_calendar"
+                nextLabel={icons.rightArrow}
+                prevLabel={icons.leftArrow}
+                minDetail="month"
+                maxDetail="month"
+                tileContent={({ date }) => {
+                    let HTML = [];
+                    marks.find((ele, index) => {
+                        if (ele === moment(date).format("YYYY MM DD")) {
+                            HTML.push(<Dot key={index} />);
+                        }
+                    });
+
+                    return <>{HTML}</>;
+                }}
+                navigationLabel={({ date }) => `${moment(date).format("M월")}`}
+                formatDay={(locale, date) => moment(date).format("DD")}
+                selectRange={false}
+                onClickDay={calendarDayClick}
+            />
+        </>
+    );
+}
+
+export default CalendarPage;
 
 const Dot = styled.div`
     height: 10px;
@@ -38,7 +82,7 @@ const CalendarBox = styled(Calendar)`
 
         /* 달력 헤더 텍스트 */
         .react-calendar__navigation__label__labelText {
-            font-size: 3rem;
+            font-size: 2.6rem;
             font-weight: 900;
             color: ${({ theme }) => theme.color.main};
             font-family: "Pretendard";
@@ -57,6 +101,8 @@ const CalendarBox = styled(Calendar)`
             position: absolute;
             left: 20%;
             top: 20%;
+
+            font-size: 2.4em;
             color: ${({ theme }) => theme.color.grey};
             background-color: transparent;
 
@@ -80,6 +126,7 @@ const CalendarBox = styled(Calendar)`
             top: 20%;
             color: ${({ theme }) => theme.color.grey};
             background-color: transparent;
+            font-size: 2.4em;
 
             &:hover {
                 color: ${({ theme }) => theme.color.darkerMain};
@@ -101,9 +148,9 @@ const CalendarBox = styled(Calendar)`
         margin-top: 2rem;
         /* Week days */
         .react-calendar__month-view__weekdays {
-            font-size: 1.2rem;
+            font-size: 1.42rem;
             font-weight: 400;
-            color: ${({ theme }) => theme.color.grey};
+            color: ${({ theme }) => theme.color.darkerGrey};
             text-align: center;
 
             abbr[title] {
@@ -138,38 +185,3 @@ const CalendarBox = styled(Calendar)`
         }
     }
 `;
-
-function CalendarPage() {
-    const marks = ["2023 04 01", "2023 04 10"];
-
-    const calendarDayClick = (value, event) => {};
-
-    return (
-        <>
-            <CalendarBox
-                calendarType="US"
-                className="big_calendar"
-                nextLabel={icons.rightArrow}
-                prevLabel={icons.leftArrow}
-                minDetail="month"
-                maxDetail="month"
-                tileContent={({ date }) => {
-                    let HTML = [];
-                    marks.find((ele, index) => {
-                        if (ele === moment(date).format("YYYY MM DD")) {
-                            HTML.push(<Dot key={index} />);
-                        }
-                    });
-
-                    return <>{HTML}</>;
-                }}
-                navigationLabel={({ date }) => `${moment(date).format("M월")}`}
-                formatDay={(locale, date) => moment(date).format("DD")}
-                selectRange={false}
-                onClickDay={calendarDayClick}
-            />
-        </>
-    );
-}
-
-export default CalendarPage;

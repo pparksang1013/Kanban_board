@@ -7,9 +7,11 @@ import RangeBarChart from "../pages/chart/RangeBarChart";
 
 const Dashboard_Wrapper = styled.section`
     padding: 2.2rem 5rem;
-    display: gird;
-    grid-area: main;
+    display: flex;
     flex-wrap: wrap;
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
 `;
 
 function DashboardRouter() {
@@ -17,7 +19,7 @@ function DashboardRouter() {
         <Dashboard_Wrapper>
             <BarChart />
             <DonutChart />
-            <RangeBarChart />
+            {/* <RangeBarChart /> */}
         </Dashboard_Wrapper>
     );
 }
