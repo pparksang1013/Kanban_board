@@ -67,7 +67,7 @@ public class SecurityConfig  {
                 .httpBasic().disable() //기본적인 http 로그인 방식을 쓰지 않겠다
                 .authorizeHttpRequests()
                 //// 로그인, 회원가입 API 는 토큰이 없는 상태에서 요청이 들어오기 때문에 permitAll
-                .requestMatchers("/board/auth/**").permitAll()
+                .requestMatchers("**").permitAll()
                 .anyRequest().authenticated() // 나머지 api 는 전부 인증 필요
 
                 //JwtSecurityConfig 클래스 적용
