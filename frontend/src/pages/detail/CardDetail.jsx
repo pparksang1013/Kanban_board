@@ -18,7 +18,7 @@ import { filledInputClasses } from "@mui/material";
 import icons from "../../style/icons/icons";
 import styled from "styled-components";
 function CardDetail(propss) {
-    const cardId = propss.cardId;
+    const cardId = propss.cardID;
 
     const { openDetailCard, setOpenDetailCard } = propss;
     const serverIp = useSelector((state) => state.SERVER_IP);
@@ -193,6 +193,7 @@ function CardDetail(propss) {
                 "Content-Type": `multipart/form-data`,
             },
         };
+        console.log(headers);
 
         axios
             .post(fileUploadPath, formData, headers)
