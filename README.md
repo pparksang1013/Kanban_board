@@ -25,58 +25,30 @@
 -   blue : #3a7e9f (58, 126, 159, 1);
 -   black: 404040;
 
-# Code rule
+# Code convention
 
 ## Commit message Rule
 
 1. 제목 첫글자는 대문자
 2. 제목 끝에 . 금지
-3. shit git
 
-### git type
+## git type
 
--   add: 코드 추가, 문서 추가 등등
--   remove: 코드 삭제, 문서 삭제 등
--   feat : 새로운 기능 추가, 기존의 기능을 요구 사항에 맞추어 수정
--   fix : 버그 수정
--   docs : 문서(주석) 수정
--   build : 빌드 관련 수정
--   ci : CI 관련 설정 수정
--   refactor : 기능의 변화가 아닌 코드 리팩터링 ex) 변수 이름 변경
--   style : 코드 스타일, 포맷팅에 대한 수정
--   test : 테스트 코드 추가/수정
--   release : 버전 릴리즈
--   build: changes that affect the build system or external dependencies
+-   👾ADD 코드 추가, 문서 추가 등등
+-   🙀REMOVE 코드 삭제, 문서 삭제 등
+-   😎FEAT 새로운 기능 추가, 기존의 기능을 요구 사항에 맞추어 수정
+-   🐳FIX 버그 수정
+-   📄DOCS 문서(주석), README 수정
+-   🥑REFACTOR 기능의 변화가 아닌 코드 리팩터링, 변수 이름 변경, 디렉터리 변경, 경로변경
+-   🌊DESIGN UI 디자인, CSS 관련 코드
 
-### commit tmeplate
+# Directory
 
-```
+## Frontend
 
-# Git commit message template
-
-<type> [optional scople] : <title>
-
-[optional body]
-
-[optional footer]
-
-################
-
--   add: 코드 추가, 문서 추가 등등
--   remove: 코드 삭제, 문서 삭제 등
--   feat : 새로운 기능 추가, 기존의 기능을 요구 사항에 맞추어 수정
--   fix : 버그 수정
--   docs : 문서(주석) 수정
--   build : 빌드 관련 수정
--   ci : CI 관련 설정 수정
--   refactor : 기능의 변화가 아닌 코드 리팩터링 ex) 변수 이름 변경
--   style : 코드 스타일, 포맷팅에 대한 수정
--   test : 테스트 코드 추가/수정
--   release : 버전 릴리즈
--   build: changes that affect the build system or external dependencies
-
-```
-
-### Empty commit message
-
-`git commit --allow-empty -m "{커밋메시지}"`
+📦 src
+├── 📂 api // Axios 관련 directory
+├── 📂 component // 기능 관련 directory
+├── 📂 router // Routre 관련 directory
+├── 📂 hooks // custom hooks 관련 directory  
+└── 📂 style // Style 관련 directory
