@@ -41,6 +41,8 @@
 -   📄DOCS 문서(주석), README 수정
 -   🥑REFACTOR 기능의 변화가 아닌 코드 리팩터링, 변수 이름 변경, 디렉터리 변경, 경로변경
 -   🌊DESIGN UI 디자인, CSS 관련 코드
+-   🦭MERGE git hub merge
+-   🙊TODO 해야하는데 아직 못한 것들
 
 # Directory
 
