@@ -24,6 +24,8 @@ function Card({ taskData }) {
         c_description: "",
         b_id: 1,
         t_id: null,
+        c_start_date: "2023-05-17",
+        c_end_date: "2023-05-17",
     });
     const [drag, setDrag] = useState(null);
     const [_list, setLists] = useState({ ...taskData.tasks });
