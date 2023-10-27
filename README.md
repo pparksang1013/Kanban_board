@@ -1,0 +1,6 @@
+![칸반보드_칸반보드](https://github.com/pparksang1013/Kanban_board/assets/125449198/499b1ded-10e8-47f2-a7ca-bf6d288c4256)
+![칸반보드_팀원](https://github.com/pparksang1013/Kanban_board/assets/125449198/dbe10cbb-24b8-49b7-a9b1-8a8a27fe9d31)
+![칸반보드_페이지 구성](https://github.com/pparksang1013/Kanban_board/assets/125449198/38c0bd0d-c496-4890-8853-31b985cae8f0)
+![칸반보드_스택](https://github.com/pparksang1013/Kanban_board/assets/125449198/4e842b24-7942-4ac3-97ab-dffb7df38885)
+![칸반보드_ERD](https://github.com/pparksang1013/Kanban_board/assets/125449198/3044b891-dfad-4d73-9579-8070678f07dc)
+![칸반보드_목표](https://github.com/pparksang1013/Kanban_board/assets/125449198/ce1c5a93-c75b-409c-966c-8ef539b2807b)
