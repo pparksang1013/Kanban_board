@@ -3,18 +3,18 @@
 ![칸반보드_페이지 구성](https://github.com/pparksang1013/Kanban_board/assets/125449198/38c0bd0d-c496-4890-8853-31b985cae8f0)
 ![칸반보드_스택](https://github.com/pparksang1013/Kanban_board/assets/125449198/4e842b24-7942-4ac3-97ab-dffb7df38885)
 ![칸반보드_ERD](https://github.com/pparksang1013/Kanban_board/assets/125449198/3044b891-dfad-4d73-9579-8070678f07dc)
-### 구현페이지
-#### 메인 페이지
-![프로젝트_최종_-16](https://github.com/pparksang1013/Kanban_board/assets/125449198/f694df4b-37aa-4223-b8dd-429714b39650)
+## 구현페이지
+### 메인 페이지
+<img width="1201" alt="메인페이지" src="https://github.com/pparksang1013/Kanban_board/assets/125449198/ae1e2904-7e90-4946-8b76-f2fd0faefd4b">
 
-#### 상세페이지
-![프로젝트_최종_-18](https://github.com/pparksang1013/Kanban_board/assets/125449198/a084a2aa-8b18-45af-8bee-8193f3fa5f16)
+### 상세페이지
+<img width="908" alt="상세페이지" src="https://github.com/pparksang1013/Kanban_board/assets/125449198/363e7aaf-f75b-41d7-b735-f52b4ab48686">
 
 #### 대쉬보드 페이지
-![프로젝트_최종_-20](https://github.com/pparksang1013/Kanban_board/assets/125449198/ffcb52de-4365-4041-ac18-d52577c04265)
+<img width="1210" alt="대쉬보드 페이지" src="https://github.com/pparksang1013/Kanban_board/assets/125449198/b398f751-b622-4055-8fcf-e442e3727201">
 
 #### 캘린더 페이지
-![프로젝트_최종_-21](https://github.com/pparksang1013/Kanban_board/assets/125449198/7ef0c720-797b-40b6-90c4-851fcab04d3b)
+<img width="1215" alt="캘린더 페이지" src="https://github.com/pparksang1013/Kanban_board/assets/125449198/de5f0a80-8f64-4d2e-b1b9-7be24103be84">
 
 
 ![칸반보드_목표](https://github.com/pparksang1013/Kanban_board/assets/125449198/ce1c5a93-c75b-409c-966c-8ef539b2807b)
